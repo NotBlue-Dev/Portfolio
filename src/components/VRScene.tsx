@@ -1,85 +1,59 @@
-'use client'
-import React, { useEffect, useState } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
-import { OrbitControls, useGLTF, ScrollControls, useScroll, useTexture } from "@react-three/drei";
-import { Suspense } from "react";
-import { useLayoutEffect } from "react";
-import * as THREE from "three";
-// @ts-ignore
-import { lerp } from "three/src/math/MathUtils";
+'use client';
+import React, { useRef, useState, useEffect } from 'react';
+import { Canvas, useFrame } from '@react-three/fiber';
+import { Gltf, ScrollControls, useScroll, Sky, Points, PointMaterial } from '@react-three/drei';
+import { getProject, val } from '@theatre/core';
+import theatreState from '../../public/assets/theatreState.json';
+import * as THREE from 'three';
+import { SheetProvider, PerspectiveCamera, useCurrentSheet } from '@theatre/r3f';
+import SnowParticleSystem from './SnowParticleSystem';
 
-const VRHeadset = ({scale, position, setScrollEnded, scrollEnded}: {scale: number, position: number[], setScrollEnded: (ended: boolean) => void, scrollEnded: boolean}) => {
-  const { scene, materials } = useGLTF("/assets/3D/cv1.glb");
+const VRHeadset = () => {
+  const sheet = useCurrentSheet();
   const scroll = useScroll();
 
-  const cameraKeyframes = [
-    // Front of the object
-    { offset: 0, position: [0, 10, 15], lookAt: [0, 2, 0] },
-    
-    // Left side of the object
-    { offset: 0.5, position: [-8, 8, -6], lookAt: [0, 0, 5] },
-    
-    // Zoom into one of the lenses
-    { offset: 1, position: [2, 4.5, 5.5], lookAt: [5, 0, 35] },
-  ];
+  // Update light intensity dynamically based on scroll position
+  useFrame(() => {
+    if (!sheet) return;
+    const sequenceLength = val(sheet.sequence.pointer.length) as number;
+    sheet.sequence.position = scroll.offset * sequenceLength;
 
-  const ClothMaterial = materials["VR_Oculus_Rift_CV1_clothband"];
-  const Lens = materials["Material.003"];
-
-  ClothMaterial.color.set(new THREE.Color(0x3C3C3C));
-  Lens.transparent = true;
-  Lens.opacity = 0.2;
-
-  const interpolate = (keyframes: {offset:number, position:number[], lookAt:number[]}[], offset: number) => {
-    let start, end;
-    for (let i = 0; i < keyframes.length - 1; i++) {
-      if (offset >= keyframes[i].offset && offset <= keyframes[i + 1].offset) {
-        start = keyframes[i];
-        end = keyframes[i + 1];
-        break;
-      }
-    }
-  
-    if (!start || !end) return keyframes[0];
-    const t = (offset - start.offset) / (end.offset - start.offset);
-    return {
-      position: start.position.map((val, idx) => lerp(val, end.position[idx], t)),
-      lookAt: start.lookAt.map((val, idx) => lerp(val, end.lookAt[idx], t)),
-    };
-  };
-
-  useFrame((state) => {
-    const { position, lookAt } = interpolate(cameraKeyframes, scroll.offset);
-  
-    if (scroll.offset >= 0.999 && !scrollEnded) {
-      setScrollEnded(true);
-    } else {
-      setScrollEnded(false);
-    }
-
-    // Set camera position
-    state.camera.position.set(position[0], position[1], position[2]);
-    
-    // Use destructuring to pass x, y, z to lookAt
-    state.camera.lookAt(lookAt[0], lookAt[1], lookAt[2]);
   });
 
-  return <primitive object={scene} scale={scale} position={position} />;
-};
-
-export const VRScene = ({ setScrollEnded, scrollEnded }: { setScrollEnded: (ended: boolean) => void, scrollEnded: boolean }) => {
   return (
-    <Canvas style={{height: '100vh'}} shadows camera={{ position: [0, 0, 10] }} >
+    <>
+      <color attach="background" args={['#0c0c0c']} />
       <ambientLight intensity={0.5} />
-      <directionalLight position={[10, 10, 5]} intensity={1} />
-      <Suspense fallback={null}>
-        <ScrollControls pages={4}>
-          <VRHeadset scale={0.022} position={[0, 0, 0]} setScrollEnded={setScrollEnded} scrollEnded={scrollEnded} />
-        </ScrollControls>
-      </Suspense>
-      <OrbitControls enableRotate={false} enableZoom={false} />
-    </Canvas>
+      <directionalLight position={[-5, 10, -3]} color="#0000FF" intensity={2.5} />
+      <directionalLight position={[5, 10, -8]} color="#4B00FF" intensity={2.5} />
+      <fog attach="fog" args={['#0c0c0c', 40, 120]} />
+      <directionalLight position={[-5, 0, 2]} color="#8000FF" intensity={2.5} />
+      <directionalLight position={[5, 0, 10]} color="#BF00FF" intensity={2.5} />
+
+      <Gltf src="./assets/3D/cv1.glb" position={[0, -2, 0]} scale={0.1} />
+      <SnowParticleSystem />
+      
+      <PerspectiveCamera
+        theatreKey="Camera"
+        makeDefault
+        position={[0, 0, 0]}
+        fov={45}
+        near={0.1}
+      />
+    </>
   );
 };
 
-useGLTF.preload("/assets/3D/cv1.glb");
+export const VRScene = React.memo(() => {
+  const sheet = getProject('VR Headset', { state: theatreState }).sheet('Scene');
+  return (
+    <Canvas gl={{ preserveDrawingBuffer: true }}>
+      <ambientLight intensity={0.5} />
+      <ScrollControls pages={4}>
+        <SheetProvider sheet={sheet}>
+          <VRHeadset />
+        </SheetProvider>
+      </ScrollControls>
+    </Canvas>
+  );
+});

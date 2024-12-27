@@ -11,6 +11,10 @@
   "dependencies": {
     "@react-three/drei": "^9.117.3",
     "@react-three/fiber": "^8.17.10",
+    "@theatre/core": "^0.7.2",
+    "@theatre/r3f": "^0.7.2",
+    "@theatre/studio": "^0.7.2",
+    "lodash": "^4.17.21",
     "next": "14.2.16",
     "react": "^18",
     "react-dom": "^18",
@@ -20,6 +24,7 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/three": "^0.171.0",
     "eslint": "^8",
     "eslint-config-next": "14.2.16",
     "typescript": "^5"
