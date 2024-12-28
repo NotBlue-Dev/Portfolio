@@ -7,11 +7,15 @@ import theatreState from '../../public/3D/theatreState.json';
 import * as THREE from 'three';
 import { SheetProvider, PerspectiveCamera, useCurrentSheet } from '@theatre/r3f';
 import SnowParticleSystem from './SnowParticleSystem';
+import { LoadingScreen } from '../Utils/LoadingScreen';
 
-const VRHeadset = () => {
+// Preload the GLTF model
+useGLTF.preload('./3D/cv1.glb');
+
+const VRHeadset = ({setLoading} : {setLoading: (bool: boolean) => void}) => {
   const sheet = useCurrentSheet();
   const scroll = useScroll();
-  const { materials } = useGLTF('./3D/cv1.glb');
+  const { materials, scene } = useGLTF('./3D/cv1.glb');
 
   useEffect(() => {
     if (materials) {
@@ -45,6 +49,14 @@ const VRHeadset = () => {
     }
   }, [materials]);
 
+  useEffect(() => {
+    if (scene) {
+      setTimeout(() => {
+        setLoading(false);
+      }, 1000);
+    }
+  }, [scene]);
+
   useFrame(() => {
     if (!sheet) return;
     const sequenceLength = val(sheet.sequence.pointer.length) as number;
@@ -54,7 +66,7 @@ const VRHeadset = () => {
   return (
     <>
       <SnowParticleSystem />
-      <Gltf src="./3D/cv1.glb" position={[0, 0, 0]} rotation={[0,0,0]} scale={0.1} />
+      <Gltf src="./3D/cv1.glb" position={[0, 0, 0]} rotation={[0,0,0]} scale={0.1}/>
       <directionalLight position={[-30, 0, 3]} color="#0EC6DA" intensity={2} />
       <directionalLight position={[30, 0, 3]} color="#930677" intensity={3} />
       <directionalLight position={[0, 15, 20]} color="#0EC6DA" intensity={1.6} />
@@ -75,15 +87,29 @@ const VRHeadset = () => {
 };
 
 export const VRScene = React.memo(() => {
+  const [loading, setLoading] = React.useState(true);
   const sheet = getProject('VR Headset', { state: theatreState }).sheet('Scene');
+
   return (
-    <Canvas gl={{ preserveDrawingBuffer: true, alpha: true }} style={{ background: 'transparent' }}>
-      <ScrollControls pages={4}>
-        <SheetProvider sheet={sheet}>
-          <VRHeadset />
-        </SheetProvider>
-      </ScrollControls>
-    </Canvas>
+    <>
+      <LoadingScreen loading={loading} />
+      <div className={loading ? "opacity-0 transition-opacity duration-1000" : "opacity-100 transition-opacity duration-1000"}>
+        <h1 className="absolute font-drukWide top-16 right-14 text-4xl lg:text-7xl md:text-6xl sm:text-5xl text-white">Enzo Dubocage</h1>
+        <div className="absolute font-drukWide bottom-28 left-14">
+          <h1 className="lg:text-7xl md:text-6xl text-4xl sm:text-5xl text-white">Développeur</h1>
+          <h1 className="absolute top-full left-1/2 lg:text-7xl md:text-6xl text-4xl sm:text-5xl text-white">Fullstack</h1>
+        </div>
+        <div className="z-10 absolute top-0 left-0 w-screen h-screen bg-transparent">
+            <Canvas onCreated={() => console.log("done")} gl={{ preserveDrawingBuffer: true, alpha: true }} style={{ background: 'transparent' }}>
+              <ScrollControls pages={4}>
+                <SheetProvider sheet={sheet}>
+                  <VRHeadset setLoading={setLoading} />
+                </SheetProvider>
+              </ScrollControls>
+            </Canvas>
+        </div>
+      </div>
+    </>
   );
 });
 

@@ -4,7 +4,6 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
     "./layout/*.{js,jsx,ts,tsx}",
   ],
-  darkMode: false, // or 'media' or 'class'
   theme: {
     fontFamily: {
       montserrat: ["Montserrat", "sans-serif"],
@@ -12,6 +11,9 @@ module.exports = {
       mono: ["monospace"],
     },
     extend: {
+      colors: {
+        'background-dark': '#120114',
+      },
       listStyleType: {
         square: "square",
         roman: "upper-roman",
@@ -19,6 +21,8 @@ module.exports = {
       animation: {
         wiggle: "wiggle 1s ease-in-out infinite",
         "photo-spin": "photo-spin 2s 1 linear forwards",
+        'spin-slow': 'spin 3s linear infinite',
+        'spin-fast': 'spin 1.5s linear infinite',
       },
       keyframes: {
         wiggle: {
