@@ -1,0 +1,100 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Montserrat";
+  font-weight: 700;
+  font-display: swap;
+  src: url('../public/fonts/Montserrat-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: "Montserrat";
+  font-weight: 400;
+  font-display: swap;
+  src: url('../public/fonts/Montserrat-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: "Montserrat";
+  font-weight: 500;
+  font-display: swap;
+  src: url('../public/fonts/Montserrat-Medium.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: "Montserrat";
+  font-weight: 600;
+  font-display: swap;
+  src: url('../public/fonts/Montserrat-SemiBold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: "Druk Wide";
+  font-weight: 900;
+  font-display: swap;
+  src: url('../public/fonts/DrukWideBold.ttf') format('truetype');
+}
+
+body,
+html {
+  overflow-x: hidden;
+  scroll-behavior: auto;
+  background-color: #120114;
+}
+body::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* Adding Scroll Margin for top */
+* {
+  scroll-margin-top: 80px;
+}
+@media screen and (max-width: 640px) {
+  * {
+    scroll-margin-top: 60px;
+  }
+  body::-webkit-scrollbar {
+    width: 2px;
+  }
+}
+
+pre::-webkit-scrollbar {
+  display: none;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #b3b3b3;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.lock-scroll {
+  overflow: hidden !important;
+}
+
+.horizontal-scrollbar::-webkit-scrollbar {
+  height: 3px;
+  border-redius: 999px;
+}
+
+/* Nprogress bar Custom Styling (force) : STARTS */
+#nprogress .bar {
+  background-color: rgba(0, 89, 255, 0.7) !important;
+  height: 3px !important;
+}
+
+#nprogress .peg {
+  box-shadow: none !important;
+}
+/* Nprogress bar Custom Styling (force) : ENDS */
