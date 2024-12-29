@@ -12,7 +12,9 @@ module.exports = {
     },
     extend: {
       colors: {
-        'background-dark': '#120114',
+        'customDark': '#120114',
+        'customBlue':'#060817',
+        'customLight': '#151f33',
       },
       listStyleType: {
         square: "square",

@@ -12,7 +12,7 @@ import { LoadingScreen } from '../Utils/LoadingScreen';
 // Preload the GLTF model
 useGLTF.preload('./3D/cv1.glb');
 
-const VRHeadset = ({setLoading} : {setLoading: (bool: boolean) => void}) => {
+const VRHeadset = ({setLoading, setAnimationComplete} : {setLoading: (bool: boolean) => void, setAnimationComplete: (bool: boolean) => void}) => {
   const sheet = useCurrentSheet();
   const scroll = useScroll();
   const { materials, scene } = useGLTF('./3D/cv1.glb');
@@ -60,7 +60,15 @@ const VRHeadset = ({setLoading} : {setLoading: (bool: boolean) => void}) => {
   useFrame(() => {
     if (!sheet) return;
     const sequenceLength = val(sheet.sequence.pointer.length) as number;
-    sheet.sequence.position = scroll.offset * sequenceLength;
+    const position = scroll.offset * sequenceLength;
+    sheet.sequence.position = position;
+
+    // Check if the animation is complete
+    if (position >= sequenceLength - 0.5) {
+      setAnimationComplete(true);
+    } else {
+      setAnimationComplete(false);
+    }
   });
 
   return (
@@ -86,30 +94,39 @@ const VRHeadset = ({setLoading} : {setLoading: (bool: boolean) => void}) => {
   );
 };
 
-export const VRScene = React.memo(() => {
+export const VRScene = React.memo(({setAnimationComplete, animationComplete}: {setAnimationComplete: (bool: boolean) => void, animationComplete : boolean}) => {
   const [loading, setLoading] = React.useState(true);
+  const [hide , setHide] = React.useState(false);
   const sheet = getProject('VR Headset', { state: theatreState }).sheet('Scene');
 
+  useEffect(() => {
+    setTimeout(() => {
+      if(animationComplete) {
+        setHide(true);
+      }
+    }, 1000);
+  }, [animationComplete]);
+
   return (
-    <>
+    <div className={`${animationComplete ? `opacity-0` : "opacity-100"} ${hide ? "hidden" : ""} transition-opacity duration-1000`}>
       <LoadingScreen loading={loading} />
       <div className={loading ? "opacity-0 transition-opacity duration-1000" : "opacity-100 transition-opacity duration-1000"}>
-        <h1 className="absolute font-drukWide top-16 right-14 text-4xl lg:text-7xl md:text-6xl sm:text-5xl text-white">Enzo Dubocage</h1>
-        <div className="absolute font-drukWide bottom-28 left-14">
-          <h1 className="lg:text-7xl md:text-6xl text-4xl sm:text-5xl text-white">Développeur</h1>
-          <h1 className="absolute top-full left-1/2 lg:text-7xl md:text-6xl text-4xl sm:text-5xl text-white">Fullstack</h1>
+        <h1 className="absolute font-drukWide top-16 right-14 max-xs:right-4 text-4xl max-xs:text-3xl lg:text-7xl md:text-6xl sm:text-5xl text-white">Enzo Dubocage</h1>
+        <div className="absolute font-drukWide bottom-28 left-14 max-xs:left-4">
+          <h1 className="lg:text-7xl md:text-6xl text-4xl sm:text-5xl max-xs:text-3xl text-white">Développeur</h1>
+          <h1 className="absolute top-full left-1/2 lg:text-7xl md:text-6xl text-4xl max-xs:text-3xl sm:text-5xl text-white">Fullstack</h1>
         </div>
-        <div className="z-10 absolute top-0 left-0 w-screen h-screen bg-transparent">
-            <Canvas onCreated={() => console.log("done")} gl={{ preserveDrawingBuffer: true, alpha: true }} style={{ background: 'transparent' }}>
+        <div className={`z-10 absolute top-0 left-0 w-screen h-screen bg-transparent`}>
+            <Canvas gl={{ preserveDrawingBuffer: true, alpha: true }} style={{ background: 'transparent' }}>
               <ScrollControls pages={4}>
                 <SheetProvider sheet={sheet}>
-                  <VRHeadset setLoading={setLoading} />
+                  <VRHeadset setLoading={setLoading} setAnimationComplete={setAnimationComplete} />
                 </SheetProvider>
               </ScrollControls>
             </Canvas>
         </div>
       </div>
-    </>
+    </div>
   );
 });
 

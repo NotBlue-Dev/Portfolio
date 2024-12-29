@@ -25,7 +25,7 @@ export default function TopNavbar() {
         ...[
           "shadow",
           "backdrop-blur-xl",
-          "bg-dark-gray-900/80",
+          "bg-customBlue",
         ]
       );
 
@@ -35,7 +35,7 @@ export default function TopNavbar() {
         ...[
           "shadow",
           "backdrop-blur-xl",
-          "bg-white/70",
+          "bg-customBlue",
         ]
       );
       control.start("hidden");
@@ -75,7 +75,7 @@ export default function TopNavbar() {
       </AnimatePresence>
 
       <Link href="/" className="mr-3" aria-label="Link to Home Page">
-        <div className="relative hidden w-8 h-8 sm:inline-flex">
+        <div className="relative hidden w-8 h-8 sm:inline-flex items-center">
           <motion.p
             animate={control}
             className="font-montserrat"
@@ -185,7 +185,7 @@ const MobileMenu = ({
 }) => {
   return (
     <motion.div
-      className="absolute top-0 left-0 z-10 w-screen h-screen font-normal bg-white dark:bg-darkPrimary sm:hidden"
+      className="absolute top-0 left-0 z-10 w-screen h-screen font-normal dark:bg-customBlue sm:hidden"
       variants={hamFastFadeContainer}
       initial="hidden"
       animate="visible"
