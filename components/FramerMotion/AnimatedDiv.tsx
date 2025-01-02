@@ -1,13 +1,5 @@
-import { AnimatedTAGProps } from "@lib/types";
+import { AnimatedTAGProps } from "lib/types";
 import { motion } from "framer-motion";
-import { Variants } from "framer-motion";
-
-type AnimatedTAGProps = {
-  variants: Variants;
-  className?: string;
-  children: React.ReactNode;
-  infinity?: boolean;
-};
 
 export default function AnimatedDiv({
   variants,

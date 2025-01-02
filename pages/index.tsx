@@ -11,6 +11,7 @@ import classNames from "classnames";
 import { months } from "@utils/date";
 import fs from "fs";
 import path from "path";
+import Layout from "../layout/Layout";
 
 type Job = {
   title: string;
@@ -39,7 +40,7 @@ export default function Home({ linkedin }: { linkedin: string }) {
   const parsedLinkedIn = JSON.parse(linkedin);
 
   return (
-    <>
+    <Layout animationComplete={animationComplete}>
       <section className={`${animationComplete ? "" : "h-screen"}`}>
         <VRScene setAnimationComplete={setAnimationComplete} animationComplete={animationComplete}/>
         {animationComplete && (
@@ -51,20 +52,20 @@ export default function Home({ linkedin }: { linkedin: string }) {
                 >
                   A propos de moi
                 </h1>
-                <p>
-                  Bonjour ! Je m'appelle Enzo Dubocage, je suis développeur full stack passionné par la création de solutions innovantes et performantes. Ma maîtrise des langages tels que Python, JavaScript, Node.js, TypeScript, Electron, HTML, CSS, React et React Native me permet de mener à bien des projets variés et ambitieux.
+                <p className="text-gray-300">
+                  Bonjour ! Je m'appelle <strong className="text-white">Enzo Dubocage</strong>, je suis <strong className="text-white">développeur full stack passionné</strong> par la création de solutions innovantes et performantes. Ma maîtrise des langages tels que Python, JavaScript, Node.js, TypeScript, Electron, HTML, CSS, React et React Native me permet de mener à bien des projets variés et ambitieux.
                 </p>
-                <p>
-                  Je suis actuellement étudiant à l'IUT de Lannion en informatique, où j'ai pu consolider mes compètences développement logiciel, en gestion de projet et en communication.
+                <p className="text-gray-300">
+                  Je suis actuellement étudiant à l'<strong className="text-white">IUT de Lannion</strong> en informatique, où j'ai pu consolider mes compètences développement logiciel, en gestion de projet et en communication.
                 </p>
-                <p>
-                  Ma passion pour l'informatique et le développement a commencer des mon plus jeunes âge, et j'ai depuis lors acquis une expérience significative, grace a mon apprentissage en autodicacte et mes expériences professionnelles. 
+                <p className="text-gray-300">
+                  Ma passion pour l'informatique et le développement a commencer des mon plus jeunes âge, et j'ai depuis lors acquis une expérience significative, grace a mon <strong className="text-white">apprentissage en autodicacte</strong> et <strong className="text-white">mes expériences professionnelles</strong>. 
                 </p>
-                <p> 
-                  Mon parcours m'a conduit à collaborer avec diverses équipes au travers le monde, Angletere, Etat Unis, France, Asie.
+                <p className="text-gray-300"> 
+                  Mon parcours m'a conduit à collaborer avec diverses équipes au travers le monde, <strong className="text-white">Angletere, Etat Unis, France, Asie</strong>.
                 </p>
-                <p>
-                  N'hésitez pas à me contacter via Discord (notbluue) pour discuter de vos projets ou de potentielles collaborations. Je suis toujours enthousiaste à l'idée de relever de nouveaux défis et de contribuer à des initiatives innovantes.
+                <p className="text-gray-300">
+                  N'hésitez pas à me contacter via Discord <strong className="text-white">(notbluue)</strong> pour discuter de vos projets ou de potentielles collaborations. Je suis toujours enthousiaste à l'idée de relever de nouveaux défis et de contribuer à des initiatives innovantes.
                 </p> 
               </div>
               <div className="flex justify-center">
@@ -73,15 +74,11 @@ export default function Home({ linkedin }: { linkedin: string }) {
             </div>
 
             <div className="flex-col text-white max-w-full prose centered">    
-              <motion.h3
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={opacityVariant}
+              <h3
                 className="my-2 text-xl text-white font-bold text-left md:text-3xl"
               >
-                Recent Experience
-              </motion.h3>
+                Mes expériences
+              </h3>
 
               <AnimatedDiv
                 variants={FadeContainer}
@@ -181,7 +178,7 @@ export default function Home({ linkedin }: { linkedin: string }) {
           </>
         )}
       </section>
-    </>
+    </Layout>
   );
 }
 
