@@ -40,7 +40,7 @@ export default function Home({ linkedin }: { linkedin: string }) {
 
   return (
     <>
-      <section className="w-screen h-screen">
+      <section className={`${animationComplete ? "" : "h-screen"}`}>
         <VRScene setAnimationComplete={setAnimationComplete} animationComplete={animationComplete}/>
         {animationComplete && (
           <>

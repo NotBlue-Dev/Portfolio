@@ -34,16 +34,17 @@ const VRHeadset = ({setLoading, setAnimationComplete} : {setLoading: (bool: bool
       if (Lens) {
         Lens.opacity = 1;
         const textureLoader = new THREE.TextureLoader();
-        const lensTexture = textureLoader.load('./images/cursed.png');
+        const lensTexture = textureLoader.load('./images/portfolio.webp');
 
         // Adjust texture mapping
-        lensTexture.offset.set(0, 0.1); // Adjust these values to move the texture
+        lensTexture.offset.set(0, -0.3); // Adjust these values to move the texture
         lensTexture.repeat.set(1, 1); // Adjust these values to scale the texture
+        lensTexture.anisotropy = 16; // Adjust anisotropy for better texture quality at a distance
 
         // @ts-expect-error emissiveMap isn't defined in the type
         Lens.emissiveMap = lensTexture;
         // @ts-expect-error emissive isn't defined in the type
-        Lens.emissive = new THREE.Color(0xffffff);
+        Lens.emissive = new THREE.Color(0x808080);
         Lens.needsUpdate = true;
       }
     }
@@ -108,9 +109,9 @@ export const VRScene = React.memo(({setAnimationComplete, animationComplete}: {s
   }, [animationComplete]);
 
   return (
-    <div className={`${animationComplete ? `opacity-0` : "opacity-100"} ${hide ? "hidden" : ""} transition-opacity duration-1000`}>
+    <div className={`${animationComplete ? `opacity-0` : "opacity-100"} ${hide ? "hidden" : ""} transition-opacity duration-300`}>
       <LoadingScreen loading={loading} />
-      <div className={loading ? "opacity-0 transition-opacity duration-1000" : "opacity-100 transition-opacity duration-1000"}>
+      <div className={loading ? "opacity-0 transition-opacity duration-1000" : "opacity-100 transition-opacity duration-300"}>
         <h1 className="absolute font-drukWide top-16 right-14 max-xs:right-4 text-4xl max-xs:text-3xl lg:text-7xl md:text-6xl sm:text-5xl text-white">Enzo Dubocage</h1>
         <div className="absolute font-drukWide bottom-28 left-14 max-xs:left-4">
           <h1 className="lg:text-7xl md:text-6xl text-4xl sm:text-5xl max-xs:text-3xl text-white">Développeur</h1>

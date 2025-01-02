@@ -3,7 +3,7 @@
         {
         "company": "The IFC",
         "company_linkedin_profile_url": "https://fr.linkedin.com/company/the-ifc",
-        "logo_url": "https://imgur.com/WeLnf1c.png",
+        "logo_url": "https://imgur.com/TYjn9hp.png",
         "job_titles": [
             {
             "title": "Développeur logiciel",
@@ -19,61 +19,9 @@
         ]
         },
         {
-        "company": "IUT Lannion",
-        "company_linkedin_profile_url": "https://www.linkedin.com/school/iutlannion/posts/?feedView=all",
-        "logo_url": "https://imgur.com/qUermht.png",
-        "job_titles": [
-            {
-                "starts_at": {
-                    "day": 1,
-                    "month": 9,
-                    "year": 2024
-                },
-                "ends_at": {
-                    "day": 1,
-                    "month": 9,
-                    "year": 2025
-                },
-                "title": "BUT 3",
-                "description": null,
-                "location": "Lannion, France"
-            },
-            {
-                "starts_at": {
-                    "day": 1,
-                    "month": 9,
-                    "year": 2023
-                },
-                "ends_at": {
-                    "day": 1,
-                    "month": 9,
-                    "year": 2024
-                },
-                "title": "BUT 2",
-                "description": null,
-                "location": "Lannion, France"
-                },            
-            {
-                "starts_at": {
-                    "day": 1,
-                    "month": 9,
-                    "year": 2022
-                },
-                "ends_at": {
-                    "day": 1,
-                    "month": 9,
-                    "year": 2023
-                },
-                "title": "BUT 1",
-                "description": null,
-                "location": "Lannion, France"
-            }
-        ]
-        },
-        {
         "company": "VRML Production",
         "company_linkedin_profile_url": "https://vrmasterleague.com/",
-        "logo_url": "https://imgur.com/E6KHiHU.png",
+        "logo_url": "https://imgur.com/Fha7wLG.png",
         "job_titles": [
             {
             "starts_at": {
@@ -91,7 +39,7 @@
         {
         "company": "Bhaptics",
         "company_linkedin_profile_url": "https://www.bhaptics.com/",
-        "logo_url": "https://imgur.com/T3EoidW.png",
+        "logo_url": "https://imgur.com/l82Hr9l.png",
         "job_titles": [
             {
             "starts_at": {
@@ -131,6 +79,80 @@
             "location": "Remote, France"
             }
         ]
+        },
+        {
+            "company": "IUT Lannion",
+            "company_linkedin_profile_url": "https://www.linkedin.com/school/iutlannion/posts/?feedView=all",
+            "logo_url": "https://imgur.com/hj88D79.png",
+            "job_titles": [
+                {
+                    "starts_at": {
+                        "day": 1,
+                        "month": 9,
+                        "year": 2024
+                    },
+                    "ends_at": {
+                        "day": 1,
+                        "month": 9,
+                        "year": 2025
+                    },
+                    "title": "BUT 3",
+                    "description": null,
+                    "location": "Lannion, France"
+                },
+                {
+                    "starts_at": {
+                        "day": 1,
+                        "month": 9,
+                        "year": 2023
+                    },
+                    "ends_at": {
+                        "day": 1,
+                        "month": 9,
+                        "year": 2024
+                    },
+                    "title": "BUT 2",
+                    "description": null,
+                    "location": "Lannion, France"
+                    },            
+                {
+                    "starts_at": {
+                        "day": 1,
+                        "month": 9,
+                        "year": 2022
+                    },
+                    "ends_at": {
+                        "day": 1,
+                        "month": 9,
+                        "year": 2023
+                    },
+                    "title": "BUT 1",
+                    "description": null,
+                    "location": "Lannion, France"
+                }
+            ]
+        },
+        {
+            "company": "Lycée Jean 23",
+            "company_linkedin_profile_url": "https://www.jean23-quintin.net/",
+            "logo_url": "https://imgur.com/EvQAATm.png",
+            "job_titles": [
+                {
+                "starts_at": {
+                    "day": 1,
+                    "month": 9,
+                    "year": 2021
+                },
+                "ends_at": {
+                    "day": 1,
+                    "month": 9,
+                    "year": 2022
+                },
+                "title": "Baccalaureat",
+                "description": "Baccalauréat spécialité NSI, et Mathématiques, mention bien.",
+                "location": "Quintin, France"
+                }
+            ]
         }
     ]
 }

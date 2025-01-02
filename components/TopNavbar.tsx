@@ -63,8 +63,8 @@ export default function TopNavbar() {
 
   return (
     <div
-      className="fixed w-full dark:text-white top-0 flex items-center justify-between px-4 py-[10px] sm:px-6 z-50 print:hidden"
-      ref={navRef}
+    className="fixed w-full dark:text-white top-0 flex items-center justify-between px-4 py-[10px] sm:px-6 z-50 print:hidden"
+    ref={navRef}
     >
       {/* Mobile Navigation Hamburger and MobileMenu */}
       <HamBurger open={navOpen} handleClick={handleClick} />
