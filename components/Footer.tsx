@@ -106,7 +106,7 @@ function WhenPlaying({ song }: { song: Song }) {
       <h4 className="text-lg font-semibold dark:text-gray-300">Now Playing</h4>
       <Link
         href={song.songUrl}
-        className="flex items-center justify-between p-3 bg-gray-200 rounded-sm dark:bg-darkSecondary sm:p-4"
+        className="flex items-center justify-between p-3 bg-gray-200 rounded-sm dark:bg-customLight sm:p-4"
       >
         <div className="flex items-center gap-2 ">
           <div className="w-10 h-10">

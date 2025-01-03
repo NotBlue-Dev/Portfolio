@@ -94,7 +94,7 @@ export default function TopNavbar() {
           className="flex items-center md:gap-2"
         >
           {navigationRoutes.slice(0, 7).map((link, index) => {
-            return <NavItem key={index} href={`/${link}`} text={link} />;
+            return <NavItem key={index} text={link} href={`/${link}`}/>;
           })}
         </motion.div>
       </motion.nav>
@@ -105,15 +105,13 @@ export default function TopNavbar() {
 // NavItem Container
 function NavItem({ href, text }: { href: string; text: string }) {
   const router = useRouter();
-  const isActive = router.asPath === (href === "/home" ? "/" : href);
+  const isActive = router.asPath === (href === "/about" ? "/" : href);
+  const className = `${isActive ? "font-bold text-gray-800 dark:text-gray-100" : "text-gray-600 dark:text-gray-300"} sm:inline-block transition-all text-[17px] px-2 md:px-3 py-[3px] hover:bg-black/10 dark:hover:bg-neutral-700/50 rounded-md`
+
   return (
     <Link
-      className={`${
-        isActive
-          ? "font-bold text-gray-800 dark:text-gray-100"
-          : " text-gray-600 dark:text-gray-300"
-      } sm:inline-block transition-all text-[17px] hidden px-2 md:px-3 py-[3px] hover:bg-black/10  dark:hover:bg-neutral-700/50 rounded-md`}
-      href={href === "/home" ? "/" : href}
+      className={className}
+      href={href === "/about" ? "/" : href}
     >
       <motion.p className="capitalize" variants={popUp}>
         {text}

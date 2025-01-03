@@ -48,6 +48,27 @@ export type SkillType = {
   Icon: IconType;
 };
 
+export type Job = {
+  title: string;
+  location?: string;
+  starts_at: {
+    month: number;
+    year: number;
+  };
+  ends_at?: {
+    month: number;
+    year: number;
+  };
+  description?: string;
+};
+
+export type Experience = {
+  company_linkedin_profile_url: string;
+  logo_url: string;
+  company: string;
+  job_titles: Job[];
+};
+
 export type SocialPlatform = {
   title: string;
   Icon: IconType;
