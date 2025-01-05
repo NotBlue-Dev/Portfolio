@@ -3,28 +3,29 @@
 import { VRScene } from "../components/3D/VRScene";
 import fs from "fs";
 import path from "path";
-import Layout from "../layout/Layout";
 import AboutMe from "components/Home/AboutMe";
 import Experiences from "components/Home/Experiences";
 import TopSkills from "components/Home/TopSkills";
-import { useState } from "react";
+import { useAnimationContext } from '../context/AnimationContext';
+import { useEffect } from "react";
 
-export default function About({ linkedin }: { linkedin: string }) {
-  const [animationComplete, setAnimationComplete] = useState(false);
+export default function Home({ linkedin }: { linkedin: string }) {
+  const { animationComplete } = useAnimationContext();
+
+  useEffect(() => {
+    console.log("animationComplete", animationComplete);
+  }, [animationComplete]);
 
   const parsedLinkedIn = JSON.parse(linkedin);
 
   return (
-      <Layout animationComplete={animationComplete}>
+      <>
         <section
           className={`${
             animationComplete ? "" : "h-screen"
           }`}
         >
-          <VRScene
-            setAnimationComplete={setAnimationComplete}
-            animationComplete={animationComplete}
-          />
+          <VRScene/>
         </section>
         {animationComplete && (
           <section>
@@ -33,7 +34,7 @@ export default function About({ linkedin }: { linkedin: string }) {
             <Experiences parsedLinkedIn={parsedLinkedIn} />
           </section>
         )}
-      </Layout>
+      </>
   );
 }
 

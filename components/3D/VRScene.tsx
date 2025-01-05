@@ -8,13 +8,15 @@ import * as THREE from 'three';
 import { SheetProvider, PerspectiveCamera, useCurrentSheet } from '@theatre/r3f';
 import SnowParticleSystem from './SnowParticleSystem';
 import { LoadingScreen } from '../Utils/LoadingScreen';
+import { useAnimationContext } from '../../context/AnimationContext';
 
 // Preload the GLTF model
 useGLTF.preload('./3D/cv1.glb');
 
-const VRHeadset = ({setLoading, setAnimationComplete} : {setLoading: (bool: boolean) => void, setAnimationComplete: (bool: boolean) => void}) => {
+const VRHeadset = ({setLoading, loading} : {setLoading: (bool: boolean) => void, loading: boolean}) => {
   const sheet = useCurrentSheet();
   const scroll = useScroll();
+  const { setAnimationComplete, animationComplete } = useAnimationContext();
   const { materials, scene } = useGLTF('./3D/cv1.glb');
 
   useEffect(() => {
@@ -52,23 +54,23 @@ const VRHeadset = ({setLoading, setAnimationComplete} : {setLoading: (bool: bool
 
   useEffect(() => {
     if (scene) {
+      // reset scroll position
       setTimeout(() => {
         setLoading(false);
       }, 1000);
     }
-  }, [scene]);
+  }, [scene, loading]);
 
   useFrame(() => {
-    if (!sheet) return;
+    if (!sheet || loading || animationComplete) return;
     const sequenceLength = val(sheet.sequence.pointer.length) as number;
     const position = scroll.offset * sequenceLength;
     sheet.sequence.position = position;
-
-    // Check if the animation is complete
-    if (position >= sequenceLength - 0.5) {
-      setAnimationComplete(true);
-    } else {
-      setAnimationComplete(false);
+  
+    // Only update the state if it's different from the current state
+    const shouldComplete = position >= sequenceLength - 0.5;
+    if (animationComplete !== shouldComplete) {
+      setAnimationComplete(shouldComplete);
     }
   });
 
@@ -95,18 +97,22 @@ const VRHeadset = ({setLoading, setAnimationComplete} : {setLoading: (bool: bool
   );
 };
 
-export const VRScene = React.memo(({setAnimationComplete, animationComplete}: {setAnimationComplete: (bool: boolean) => void, animationComplete : boolean}) => {
+export const VRScene = () => {
   const [loading, setLoading] = React.useState(true);
   const [hide , setHide] = React.useState(false);
   const sheet = getProject('VR Headset', { state: theatreState }).sheet('Scene');
+  const { animationComplete, setAnimationComplete } = useAnimationContext();
+  const [key, setKey] = React.useState(0);
 
   useEffect(() => {
-    setTimeout(() => {
-      if(animationComplete) {
-        setHide(true);
-      }
-    }, 1000);
-  }, [animationComplete]);
+    if (!animationComplete) {
+      setLoading(true);
+      setKey(prevKey => prevKey + 1);
+    }
+  
+    setHide(animationComplete);
+
+  }, [animationComplete, setAnimationComplete]);
 
   return (
     <div className={`${animationComplete ? `opacity-0` : "opacity-100"} ${hide ? "hidden" : ""} transition-opacity duration-300`}>
@@ -119,9 +125,9 @@ export const VRScene = React.memo(({setAnimationComplete, animationComplete}: {s
         </div>
         <div className={`z-10 absolute top-0 left-0 w-screen h-screen bg-transparent`}>
             <Canvas gl={{ preserveDrawingBuffer: true, alpha: true }} style={{ background: 'transparent' }}>
-              <ScrollControls pages={4}>
+              <ScrollControls key={key} pages={4} >
                 <SheetProvider sheet={sheet}>
-                  <VRHeadset setLoading={setLoading} setAnimationComplete={setAnimationComplete} />
+                  <VRHeadset setLoading={setLoading} loading={loading} />
                 </SheetProvider>
               </ScrollControls>
             </Canvas>
@@ -129,7 +135,7 @@ export const VRScene = React.memo(({setAnimationComplete, animationComplete}: {s
       </div>
     </div>
   );
-});
+};
 
 VRScene.displayName = 'VRScene';
 VRHeadset.displayName = 'VRHeadset';

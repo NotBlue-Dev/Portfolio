@@ -10,6 +10,7 @@ import {
   popUp,
 } from "../content/FramerMotionVariants";
 import { navigationRoutes } from "../utils/utils";
+import { useAnimationContext } from "../context/AnimationContext";
 
 /* TopNavbar Component */
 export default function TopNavbar() {
@@ -21,24 +22,23 @@ export default function TopNavbar() {
   // Adding Shadow, backdrop to the navbar as user scroll the screen
   const addShadowToNavbar = useCallback(() => {
     if (window.scrollY > 10) {
-      navRef.current!.classList.add(
-        ...[
+      if (navRef.current) { // Check if navRef.current is not null
+        navRef.current.classList.add(
           "shadow",
           "backdrop-blur-xl",
-          "bg-customBlue",
-        ]
-      );
-
-      control.start("visible");
+          "bg-customBlue"
+        );
+        control.start("visible");
+      }
     } else {
-      navRef.current!.classList.remove(
-        ...[
+      if (navRef.current) { // Check if navRef.current is not null
+        navRef.current.classList.remove(
           "shadow",
           "backdrop-blur-xl",
-          "bg-customBlue",
-        ]
-      );
-      control.start("hidden");
+          "bg-customBlue"
+        );
+        control.start("hidden");
+      }
     }
   }, [control]);
 
@@ -105,13 +105,32 @@ export default function TopNavbar() {
 // NavItem Container
 function NavItem({ href, text }: { href: string; text: string }) {
   const router = useRouter();
-  const isActive = router.asPath === (href === "/about" ? "/" : href);
+  const { animationComplete, setAnimationComplete } = useAnimationContext();
+  const link = (href === "/home" ? "/" : href);
+  const isActive = animationComplete && router.asPath === "/" && href === "/about" || router.asPath === link && !animationComplete;
   const className = `${isActive ? "font-bold text-gray-800 dark:text-gray-100" : "text-gray-600 dark:text-gray-300"} sm:inline-block transition-all text-[17px] px-2 md:px-3 py-[3px] hover:bg-black/10 dark:hover:bg-neutral-700/50 rounded-md`
 
   return (
     <Link
+      onClickCapture={(e) => {
+        // Prevent default only if the current path matches the link and specific conditions are met
+        if ((router.asPath === link && href === "/home") || (router.asPath === "/" && href === "/about")) {
+          e.preventDefault();
+          const newAnimationState = href === "/about";
+          if (animationComplete !== newAnimationState) {
+            setAnimationComplete(newAnimationState);
+            console.log(`clicked ${href}, setting animationComplete to ${newAnimationState}`);
+          }
+        }
+
+        if(href === "/about") {
+          setAnimationComplete(true);
+        } else {
+          setAnimationComplete(false);
+        }
+      }}
       className={className}
-      href={href === "/about" ? "/" : href}
+      href={href === "/home" || href === "/about" ? "/" : href}
     >
       <motion.p className="capitalize" variants={popUp}>
         {text}

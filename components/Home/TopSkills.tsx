@@ -9,7 +9,7 @@ import { headingFromLeft } from "../../content/FramerMotionVariants";
 
 export default function SkillSection() {
   return (
-    <section className="flex-col text-white max-w-full prose centered">
+    <section className="flex-col text-white prose justify-center mx-auto my-11 mb-10 max-w-7xl relative p-4">
       <AnimatedHeading
         className="w-full my-2 text-2xl text-white sm:text-3xl font-bold text-left font-inter"
         variants={headingFromLeft}

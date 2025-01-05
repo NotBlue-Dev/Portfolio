@@ -16,13 +16,13 @@ export default function Footer() {
   const { data: currentSong } = useSWR("/api/now-playing", fetcher);
 
   return (
-    <footer className="w-full text-gray-600 dark:text-gray-400/50 font-inter mb-14 print:hidden">
+    <footer className="justify-center mx-auto my-11 mb-10 max-w-7xl relative p-4 text-gray-600 dark:text-gray-400/50 font-inter print:hidden">
       <motion.div
         initial="hidden"
         whileInView="visible"
         variants={FadeContainer}
         viewport={{ once: true }}
-        className="flex flex-col max-w-4xl gap-5 p-5 mx-auto text-sm border-t-2 border-gray-200 2xl:max-w-5xl 3xl:max-w-7xl dark:border-gray-400/10 sm:text-base"
+        className="flex flex-col max-w-full gap-5 p-5 mx-auto text-sm border-t-2 border-gray-200 dark:border-gray-400/10 sm:text-base"
       >
         <div>
           {currentSong?.isPlaying ? (

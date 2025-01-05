@@ -11,7 +11,7 @@ interface ExperiencesProps {
 
 const Experiences: React.FC<ExperiencesProps> = ({ parsedLinkedIn }) => {
     return (
-        <div className="flex-col text-white max-w-full prose centered">    
+        <div className="flex-col text-white prose justify-center mx-auto my-11 mb-10 max-w-7xl relative p-4">    
             <h3
                 className="my-2 text-xl text-white font-bold text-left md:text-3xl"
             >

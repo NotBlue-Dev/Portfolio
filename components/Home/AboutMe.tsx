@@ -5,7 +5,7 @@ import React from "react";
 
 const AboutMe = () => {
     return (
-        <div className="flex flex-col lg:flex-row text-white max-w-full prose dark:prose-invert h-fit centered mt-20 lg:mt-24">
+        <div className="flex flex-col lg:flex-row text-white prose dark:prose-invert h-fit justify-center mx-auto my-11 mb-10 max-w-7xl relative p-4 mt-20 lg:mt-24">
             <div className="flex-1 min-w-0">
             <motion.h1
                 variants={FadeContainer}

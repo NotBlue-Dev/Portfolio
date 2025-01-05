@@ -9,16 +9,16 @@ export const metadata: Metadata = {
 
 export default function Layout({
   children,
-  animationComplete = false,
+  showFooter = true,
 }: Readonly<{
   children: React.ReactNode;
-  animationComplete?: boolean;
+  showFooter?: boolean;
 }>) {
   return (
     <>
       <TopNavbar />
       <main>{children}</main>
-      {animationComplete && <Footer />}
+      {showFooter && <Footer />}
     </>
   );
 }

@@ -2,13 +2,16 @@ import { useEffect } from 'react';
 
 export const LoadingScreen = ({loading}: {loading: boolean}) => {
     useEffect(() => {
-        if (!loading) {
-          const loadingScreen = document.getElementById('loading-screen');
-          if (loadingScreen) {
-            loadingScreen.classList.add('opacity-0');
-    
-            // Optional: remove loader from DOM via event listener
-            loadingScreen.addEventListener('transitionend', onTransitionEnd);
+        const loadingScreen = document.getElementById('loading-screen');
+        if (loadingScreen) {
+          if (!loading) {
+              loadingScreen.classList.add('opacity-0');
+              // Add event listener to set display none after transition
+              loadingScreen.addEventListener('transitionend', onTransitionEnd);
+          } else {
+              // Ensure the loading screen is visible when loading is true
+              loadingScreen.style.display = '';
+              loadingScreen.classList.remove('opacity-0');
           }
         }
     
