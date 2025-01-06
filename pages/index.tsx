@@ -7,14 +7,9 @@ import AboutMe from "components/Home/AboutMe";
 import Experiences from "components/Home/Experiences";
 import TopSkills from "components/Home/TopSkills";
 import { useAnimationContext } from '../context/AnimationContext';
-import { useEffect } from "react";
 
 export default function Home({ linkedin }: { linkedin: string }) {
   const { animationComplete } = useAnimationContext();
-
-  useEffect(() => {
-    console.log("animationComplete", animationComplete);
-  }, [animationComplete]);
 
   const parsedLinkedIn = JSON.parse(linkedin);
 
