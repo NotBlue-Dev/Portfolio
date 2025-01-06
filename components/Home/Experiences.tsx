@@ -5,11 +5,8 @@ import Image from "next/image";
 import classNames from "classnames";
 import { months } from "@utils/date";
 
-interface ExperiencesProps {
-  parsedLinkedIn: { experiences: Experience[] };
-}
 
-const Experiences: React.FC<ExperiencesProps> = ({ parsedLinkedIn }) => {
+const Experiences = ({ parsedLinkedIn } : {parsedLinkedIn: Experience[]}) => {
     return (
         <div className="flex-col text-white prose justify-center mx-auto my-11 mb-10 max-w-7xl relative p-4">    
             <h3
@@ -24,7 +21,7 @@ const Experiences: React.FC<ExperiencesProps> = ({ parsedLinkedIn }) => {
                 viewport={{ once: true }}
                 className="flex flex-col gap-2 pt-10 pb-5 overflow-x-scroll md:gap-4"
             >
-                {parsedLinkedIn.experiences.map((experience: Experience) => {
+                {parsedLinkedIn.map((experience: Experience) => {
                 return (
                     <motion.div
                     initial="hidden"

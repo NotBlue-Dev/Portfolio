@@ -12,6 +12,7 @@
     "@emailjs/browser": "^4.4.1",
     "@react-three/drei": "^9.117.3",
     "@react-three/fiber": "^8.17.10",
+    "@supabase/supabase-js": "^2.2.3",
     "@tailwindcss/line-clamp": "^0.4.4",
     "@theatre/core": "^0.7.2",
     "@theatre/r3f": "^0.7.2",

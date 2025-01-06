@@ -1,17 +1,16 @@
 'use client'
 
 import { VRScene } from "../components/3D/VRScene";
-import fs from "fs";
-import path from "path";
 import AboutMe from "components/Home/AboutMe";
 import Experiences from "components/Home/Experiences";
 import TopSkills from "components/Home/TopSkills";
 import { useAnimationContext } from '../context/AnimationContext';
+import { getUserDataValue } from "lib/supabase";
+import { Experience } from "lib/types";
 
-export default function Home({ linkedin }: { linkedin: string }) {
+export default function Home({ linkedin } : { linkedin : {value: {experiences: Experience[]}}[]}) {
   const { animationComplete } = useAnimationContext();
-
-  const parsedLinkedIn = JSON.parse(linkedin);
+  const parsedLinkedIn = linkedin[0].value.experiences;
 
   return (
       <>
@@ -34,13 +33,12 @@ export default function Home({ linkedin }: { linkedin: string }) {
 }
 
 export async function getStaticProps() {
-  // Path to your JSON file, adjust the path as necessary
-  const filePath = path.join(process.cwd(), 'pages', 'data.json');
-  const linkedin = fs.readFileSync(filePath, 'utf8');
-  
+  const { data: linkedin } = await getUserDataValue("linkedin");
+
   return {
     props: {
-      linkedin
-    }
+      linkedin,
+    },
+    revalidate: 60 * 60 * 24 , // everyday
   };
 }

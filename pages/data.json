@@ -1,4 +1,11 @@
 {
+    "public_identifier": "enzo.dbc",
+    "profile_pic_url": "",
+    "background_cover_image_url": null,
+    "first_name": "Enzo",
+    "last_name": "Dubocage",
+    "full_name": "Enzo Dubocage",
+    "follower_count": 843,
     "experiences": [
         {
         "company": "The IFC",
@@ -154,5 +161,38 @@
                 }
             ]
         }
-    ]
-}
+    ],
+    "languages": [
+      "English",
+      "French"
+    ],
+    "accomplishment_organisations": [],
+    "accomplishment_publications": [],
+    "accomplishment_honors_awards": [],
+    "accomplishment_patents": [],
+    "accomplishment_courses": [],
+    "accomplishment_projects": [],
+    "accomplishment_test_scores": [],
+    "volunteer_work": [],
+    "connections": null,
+    "articles": [],
+    "groups": [],
+    "phone_numbers": [],
+    "social_networking_services": [],
+    "skills": [],
+    "inferred_salary": {
+      "min": null,
+      "max": null
+    },
+    "gender": null,
+    "birth_date": null,
+    "industry": null,
+    "extra": {
+      "github_profile_id": null,
+      "twitter_profile_id": null,
+      "facebook_profile_id": null
+    },
+    "interests": [],
+    "personal_emails": [],
+    "personal_numbers": []
+  }
