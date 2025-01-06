@@ -15,7 +15,7 @@ export async function getProjects() {
     .from("projects")
     .select("*")
     .eq("pinned", "true")
-    .order("created_at", { ascending: false });
+    .order("date", { ascending: false });
 
   return {
     projects,

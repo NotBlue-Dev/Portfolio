@@ -5,17 +5,55 @@ import {
     IGitHubProfileResponse,
     IGitHubRepositoriesAPIResponse,
     IUserContributionDetails,
-    GitHubRepo,
     IWeek,
   } from "./interface";
+
+  import { Asset } from "./interface";
   
   import { GithubRepo } from "./types";
   import moment from "moment";
   
+  const repoWithDownloadCount = [
+    "EAST",
+    "Echo-VR-Haptics",
+  ];
+
   const headers = new Headers({
     Authorization: `token ${process.env.GITHUB_TOKEN}`,
   });
   
+  export async function fetchDownloadCount(): Promise<number> {
+    const requestOptions: RequestInit = {
+      method: "GET",
+      headers,
+    };
+  
+    try {
+      const downloadCounts = await Promise.all(repoWithDownloadCount.map(async repo => {
+        const response = await fetch(
+          `https://api.github.com/repos/NotBlue-Dev/${repo}/releases`,
+          requestOptions
+        );
+
+        if (!response.ok) {
+          throw new Error("Error fetching GitHub data: " + response.statusText);
+        }
+
+        const data = await response.json();
+        return data.reduce((acc: number, asset: Asset) => {
+          const assetDownloadCount = asset.assets.reduce((sum, version) => sum + version.download_count, 0);
+          return acc + assetDownloadCount;
+        }, 0);
+      }));
+
+      const totalDownloadCount = downloadCounts.reduce((sum, count) => sum + count, 0);
+      return totalDownloadCount;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  }
+
   // its for /api/stats/github
   export async function fetchGithub(): Promise<IGitHubProfileResponse> {
     const requestOptions: RequestInit = {
@@ -25,7 +63,7 @@ import {
   
     try {
       const response = await fetch(
-        "https://api.github.com/user/repos?visibility=all",
+        "https://api.github.com/user/repos?visibility=all&per_page=100",
         requestOptions
       );
       const responseProfile = await fetch(
@@ -44,7 +82,9 @@ import {
       const data = await responseProfile.json(); 
       const repos = await response.json();
 
-      data.public_repos = repos.length;
+      //list all repos name 
+      const filteredRepos = repos.filter((repo: GithubRepo) => repo.owner.login === "NotBlue-Dev");
+      data.public_repos = filteredRepos.length;
       return data as IGitHubProfileResponse;
     } catch (error) {
       console.error(error);

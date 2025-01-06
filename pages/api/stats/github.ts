@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { fetchGithub, getGithubStarsAndForks } from "../../../lib/github";
+import { fetchGithub, getGithubStarsAndForks, fetchDownloadCount } from "../../../lib/github";
 
 export default async function handler(
   _req: NextApiRequest,
@@ -11,6 +11,7 @@ export default async function handler(
     followers,
   } = await fetchGithub();
   const { githubStars, forks } = await getGithubStarsAndForks();
+  const download_count = await fetchDownloadCount();
 
   res.setHeader(
     "Cache-Control",
@@ -23,5 +24,6 @@ export default async function handler(
     followers,
     githubStars,
     forks,
+    download_count,
   });
 }

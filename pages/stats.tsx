@@ -45,6 +45,10 @@ export default function Stats() {
       title: "GitHub Forked",
       value: github?.forks,
     },
+    {
+      title: "GitHub download",
+      value: github?.download_count,
+    },
   ];
 
   return (

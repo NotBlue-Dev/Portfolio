@@ -123,6 +123,11 @@ function NavItem({ href, text }: { href: string; text: string }) {
           }
         }
 
+        if(href === "/cv") {
+          e.preventDefault();
+          window.open("/images/resume.png", "_blank");
+        }
+
         if(href === "/about") {
           setAnimationComplete(true);
         } else {

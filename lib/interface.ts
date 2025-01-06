@@ -103,6 +103,10 @@ export interface IExternalUrls {
     updated_at: string;
   }
 
+  export interface Asset {
+    assets: { download_count: number }[];
+  }
+
   export interface GitHubRepo {
     private: boolean;
   }

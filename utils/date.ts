@@ -2,17 +2,17 @@
 
 export const months = [
   "Jan",
-  "Feb",
+  "Fév",
   "Mar",
-  "Apr",
-  "May",
-  "Jun",
-  "Jul",
-  "Aug",
+  "Avr",
+  "Mai",
+  "Juin",
+  "Juil",
+  "Aou",
   "Sep",
   "Oct",
   "Nov",
-  "Dec",
+  "Déc",
 ];
 export function getFormattedDate(date: Date): string {
   return `${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;

@@ -44,8 +44,10 @@ export type FormInput = {
 export type ProjectType = {
   id: string;
   name: string;
+  date: string;
   coverImage: string;
   description: string;
+  skill: string[];
   githubURL: string;
   previewURL?: string;
   tools?: string[];
@@ -107,4 +109,7 @@ export type GithubRepo = {
   stargazers_count: number;
   fork: boolean;
   forks_count: number;
+  owner: {
+    login:string;
+  }
 };

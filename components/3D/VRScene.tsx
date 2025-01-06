@@ -123,6 +123,9 @@ export const VRScene = () => {
           <h1 className="lg:text-7xl md:text-6xl text-4xl sm:text-5xl max-xs:text-3xl text-white">Développeur</h1>
           <h1 className="absolute top-full left-1/2 lg:text-7xl md:text-6xl text-4xl max-xs:text-3xl sm:text-5xl text-white">Fullstack</h1>
         </div>
+        {/* <div className='absolute bottom-8 left-1/2 transform -translate-x-1/2'>
+          <div className="mouse"></div>
+        </div> */}
         <div className={`z-10 absolute top-0 left-0 w-screen h-screen bg-transparent`}>
             <Canvas gl={{ preserveDrawingBuffer: true, alpha: true }} style={{ background: 'transparent' }}>
               <ScrollControls key={key} pages={4} >
