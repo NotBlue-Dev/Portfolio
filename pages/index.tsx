@@ -5,10 +5,10 @@ import AboutMe from "components/Home/AboutMe";
 import Experiences from "components/Home/Experiences";
 import TopSkills from "components/Home/TopSkills";
 import { useAnimationContext } from '../context/AnimationContext';
-import { getUserDataValue } from "lib/supabase";
 import { Experience } from "lib/types";
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { GetStaticPropsContext } from "next";
+import { getUserDataValue } from 'lib/supabase';
 
 export default function Home({ linkedin } : { linkedin : {value: {experiences: Experience[]}}[]}) {
   const { animationComplete } = useAnimationContext();
@@ -35,7 +35,7 @@ export default function Home({ linkedin } : { linkedin : {value: {experiences: E
 }
 
 export async function getStaticProps({ locale }: GetStaticPropsContext) {
-  const { data: linkedin } = await getUserDataValue("linkedin");
+  const { data: linkedin } = await getUserDataValue("linkedin", locale || 'fr');
 
   return {
     props: {

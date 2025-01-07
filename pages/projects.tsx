@@ -43,11 +43,11 @@ export default function Projects({
           variants={opacityVariant}
           className="text-lg text-gray-600 mt-4 dark:text-gray-400"
         >
-          J'ai créer divers types de projets allant d'architecture basiques à des projets complexes. Jusqu'à présent, j'ai réalisé{" "}
+          {t('projectAmmountTitle')}{" "}
           <span className="font-bold text-gray-600 dark:text-gray-200">
             {projects.length}+
           </span>{" "}
-          projets.
+          {t('projectAmmountDesc')}
         </AnimatedText>
 
         <AnimatedDiv
@@ -66,7 +66,7 @@ export default function Projects({
               onClick={handleShowMore}
               className="px-4 py-2 text-white bg-customLight rounded-md hover:bg-customLight focus:outline-none focus:ring"
             >
-              Show More
+              {t('showMore')}
             </button>
           </div>
         )}
@@ -75,7 +75,7 @@ export default function Projects({
   );
 }
 export async function getStaticProps({ locale }: GetStaticPropsContext) {
-  const { projects, error } = await getProjects();
+  const { projects, error } = await getProjects(locale || 'fr');
 
   return {
     props: {

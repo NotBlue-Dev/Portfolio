@@ -13,6 +13,9 @@ import Track from "components/Stats/Track";
 import fetcher from "lib/fetcher";
 import useSWR from "swr";
 import GitHubActivityGraph from "@components/Stats/GithubActivityGraph";
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { GetStaticPropsContext } from "next";
+import { useTranslation } from 'next-i18next'
 
 type Stats = {
   title: string;
@@ -23,30 +26,31 @@ export default function Stats() {
   const { data: topTracks } = useSWR("/api/stats/tracks", fetcher);
   const { data: artists } = useSWR("/api/stats/artists", fetcher);
   const { data: github } = useSWR("/api/stats/github", fetcher);
+  const { t } = useTranslation('common');
 
   const stats: Stats[] = [
     {
-      title: "GitHub Repos",
+      title: t('githubRepo'),
       value: github?.repos,
     },
     {
-      title: "GitHub Gists",
+      title: t('githubGists'),
       value: github?.gists,
     },
     {
-      title: "GitHub Followers",
+      title: t('githubFollowers'),
       value: github?.followers,
     },
     {
-      title: "GitHub Stars",
+      title: t('githubStars'),
       value: github?.githubStars,
     },
     {
-      title: "GitHub Forked",
+      title: t('githubForked'),
       value: github?.forks,
     },
     {
-      title: "GitHub download",
+      title: t('githubDownload'),
       value: github?.download_count,
     },
   ];
@@ -61,13 +65,13 @@ export default function Stats() {
             variants={fromLeftVariant}
             className={`text-4xl  md:text-5xl font-bold text-neutral-900 dark:text-neutral-200`}
           >
-            Statistiques
+            {t('stats')}
           </AnimatedHeading>
           <AnimatedText
             variants={opacityVariant}
             className="text-lg text-gray-600 dark:text-gray-400"
           >
-            Voici mes statistiques GitHub et Spotify mises à jour en direct via une API.
+            {t('hereAreStats')}
           </AnimatedText>
         </div>
         {/* Github stats */}
@@ -85,13 +89,13 @@ export default function Stats() {
             variants={opacityVariant}
             className="text-3xl font-bold capitalize sm:text-4xl text-neutral-900 dark:text-neutral-200"
           >
-            Contribution GitHub
+            {t('contribGit')}
           </AnimatedHeading>
           <AnimatedText
             variants={opacityVariant}
             className="my-4 text-gray-700 dark:text-gray-300"
           >
-            Voici mon graphique de contribution GitHub qui montre mon activité et ma productivité sur la plateforme.
+            {t('contribGitGraph')}
           </AnimatedText>
           <GitHubCalendar
             style={{
@@ -112,7 +116,7 @@ export default function Stats() {
             variants={opacityVariant}
             className="text-3xl font-bold capitalize sm:text-4xl text-neutral-900 dark:text-neutral-200"
           >
-            Mes sons les plus écoutés sur Spotify
+            {t('mostListened')}
           </AnimatedHeading>
 
           <AnimatedText
@@ -123,14 +127,13 @@ export default function Stats() {
               {topTracks ? (
                 <>
                   <span className="font-semibold">{topTracks?.[0]?.title}</span>
-                  {" est mon"}
+                  {t('isMy')}
                 </>
               ) : (
                 <span className="w-20 h-6 bg-white dark:bg-darkSecondary"></span>
               )}
             </span>{" "}
-            {!topTracks ? "Mes sons" : "son"} les plus écoutés sur Spotify au cours des 4 dernières semaines. 
-            Voici mes morceaux préférer selon l'algorithme de Spotify.
+            {!topTracks ? t('mySongs') : t('son')} {t('descSpotify')}
           </AnimatedText>
           <div className="flex flex-col gap-0 my-10 font-barlow">
             {topTracks ? (
@@ -258,4 +261,12 @@ function LoadingArtists() {
       ))}
     </>
   );
+}
+
+export async function getStaticProps({ locale }: GetStaticPropsContext) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale || 'fr', ["common"])),
+    },
+  };
 }

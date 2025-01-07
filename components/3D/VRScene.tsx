@@ -9,7 +9,7 @@ import { SheetProvider, PerspectiveCamera, useCurrentSheet } from '@theatre/r3f'
 import SnowParticleSystem from './SnowParticleSystem';
 import { LoadingScreen } from '../Utils/LoadingScreen';
 import { useAnimationContext } from '../../context/AnimationContext';
-
+import { useTranslation } from "react-i18next";
 // Preload the GLTF model
 useGLTF.preload('./3D/cv1.glb');
 
@@ -103,6 +103,7 @@ export const VRScene = () => {
   const sheet = getProject('VR Headset', { state: theatreState }).sheet('Scene');
   const { animationComplete, setAnimationComplete } = useAnimationContext();
   const [key, setKey] = React.useState(0);
+  const { t } = useTranslation('common');
 
   useEffect(() => {
     if (!animationComplete) {
@@ -118,10 +119,10 @@ export const VRScene = () => {
     <div className={`${animationComplete ? `opacity-0` : "opacity-100"} ${hide ? "hidden" : ""} transition-opacity duration-300`}>
       <LoadingScreen loading={loading} />
       <div className={loading ? "opacity-0 transition-opacity duration-1000" : "opacity-100 transition-opacity duration-300"}>
-        <h1 className="absolute font-drukWide top-16 right-14 max-xs:right-4 text-4xl max-xs:text-3xl lg:text-7xl md:text-6xl sm:text-5xl text-white">Enzo Dubocage</h1>
+        <h1 className="absolute font-drukWide top-16 right-14 max-xs:right-4 text-4xl max-xs:text-3xl lg:text-7xl md:text-6xl sm:text-5xl text-white">{t('name')}</h1>
         <div className="absolute font-drukWide bottom-28 left-14 max-xs:left-4">
-          <h1 className="lg:text-7xl md:text-6xl text-4xl sm:text-5xl max-xs:text-3xl text-white">Développeur</h1>
-          <h1 className="absolute top-full left-1/2 lg:text-7xl md:text-6xl text-4xl max-xs:text-3xl sm:text-5xl text-white">Fullstack</h1>
+          <h1 className="lg:text-7xl md:text-6xl text-4xl sm:text-5xl max-xs:text-3xl text-white">{t('developper')}</h1>
+          <h1 className="absolute top-full left-1/2 lg:text-7xl md:text-6xl text-4xl max-xs:text-3xl sm:text-5xl text-white">{t('fullstack')}</h1>
         </div>
         {/* <div className='absolute bottom-8 left-1/2 transform -translate-x-1/2'>
           <div className="mouse"></div>
@@ -142,3 +143,4 @@ export const VRScene = () => {
 
 VRScene.displayName = 'VRScene';
 VRHeadset.displayName = 'VRHeadset';
+

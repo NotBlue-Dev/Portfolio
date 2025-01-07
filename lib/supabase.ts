@@ -10,13 +10,14 @@ export const supabase = createClient(
  * Asynchronously fetches all projects from the database where the 'pinned' column is set to true.
  * The results are sorted by the 'created_at' column in descending order.
  */
-export async function getProjects() {
+export async function getProjects(locale: string) {
   let { data: projects, error } = await supabase
     .from("projects")
     .select("*")
     .eq("pinned", "true")
+    .eq('lang', locale)
     .order("date", { ascending: false });
-
+  
   return {
     projects,
     error: error !== null,
@@ -26,11 +27,12 @@ export async function getProjects() {
 /*
  * This function will retrieve the individual custom data from the supabase such as linkedin data
  */
-export async function getUserDataValue(key: string) {
+export async function getUserDataValue(key: string, lang:string) {
   let { data, error } = await supabase
     .from("user_data")
     .select("value")
     .eq("key", key)
+    .eq("lang", lang)
     .limit(1)
     .order("created_at", { ascending: false });
   if (data?.length === 0) {

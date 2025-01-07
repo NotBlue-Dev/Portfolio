@@ -6,15 +6,19 @@ import React from "react";
 import { SkillType } from "lib/types";
 import AnimatedHeading from "components/FramerMotion/AnimatedHeading";
 import { headingFromLeft } from "../../content/FramerMotionVariants";
+import { useTranslation } from "react-i18next";
+
 
 export default function SkillSection() {
+  const { t } = useTranslation('common')
+
   return (
     <section className="flex-col text-white prose justify-center mx-auto my-11 mb-10 max-w-7xl relative p-4">
       <AnimatedHeading
         className="w-full my-2 text-2xl text-white sm:text-3xl font-bold text-left font-inter"
         variants={headingFromLeft}
         >
-        Mes skills
+        {t('mySkills')}
       </AnimatedHeading>
 
       <motion.div
