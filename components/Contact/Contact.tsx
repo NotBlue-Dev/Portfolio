@@ -1,11 +1,13 @@
 import React from "react";
 import "react-toastify/dist/ReactToastify.css";
 import { popUpFromBottomForText } from "../../content/FramerMotionVariants";
-import AnimatedText from "../FramerMotion/AnimatedText";
 import AnimatedHeading from "../FramerMotion/AnimatedHeading";
 import ContactForm from "./ContactForm";
+import { useTranslation } from 'next-i18next'
 
 export default function Contact() {
+  const {t} = useTranslation('common');
+
   return (
     <div id="contact" className="dark:bg-darkPrimary !relative">
       {/* Wrapper Container */}
@@ -16,7 +18,7 @@ export default function Contact() {
             variants={popUpFromBottomForText}
             className="w-full my-2 text-2xl font-bold text-center"
           >
-            Me contacter
+            {t('contactMeButton')}
           </AnimatedHeading>
 
           <ContactForm />

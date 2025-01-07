@@ -6,7 +6,7 @@ import React from "react";
 import { SkillType } from "lib/types";
 import AnimatedHeading from "components/FramerMotion/AnimatedHeading";
 import { headingFromLeft } from "../../content/FramerMotionVariants";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from 'next-i18next'
 
 
 export default function SkillSection() {

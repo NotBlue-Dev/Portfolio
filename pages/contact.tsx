@@ -1,4 +1,6 @@
 import ContactComponent from '../components/Contact';
+import { GetStaticPropsContext } from 'next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 const Contact = () => {
     return (
@@ -8,5 +10,13 @@ const Contact = () => {
     )
 };
 
+export async function getStaticProps({ locale }: GetStaticPropsContext) {  
+    return {
+      props: {
+        ...(await serverSideTranslations(locale || 'fr', ["common"])),
+      },
+      revalidate: 60 * 60 * 24 , // everyday
+    };
+}
 
 export default Contact;

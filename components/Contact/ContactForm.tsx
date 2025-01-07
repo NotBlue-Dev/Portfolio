@@ -9,8 +9,11 @@ import {
 import Ripples from "react-ripples";
 import { useRef } from "react";
 import { FormInput } from "lib/types";
+import { useTranslation } from 'next-i18next'
 
 export default function Form() {
+  const {t} = useTranslation('common');
+
   const sendButtonRef = useRef<HTMLButtonElement>(null!);
   const formRef = useRef<HTMLFormElement>(null!);
 
@@ -111,7 +114,7 @@ export default function Form() {
               htmlFor="floating_first_name"
               className="peer-focus:font-medium absolute text-sm text-slate-600 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-black dark:peer-focus:text-white peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
             >
-              Prénom
+              {t('firstName')}
             </label>
           </motion.div>
           <motion.div
@@ -130,7 +133,7 @@ export default function Form() {
               htmlFor="floating_last_name"
               className="peer-focus:font-medium absolute text-sm text-slate-600 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-black dark:peer-focus:text-white peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
             >
-              Nom de famille
+              {t('lastName')}
             </label>
           </motion.div>
         </div>
@@ -150,7 +153,7 @@ export default function Form() {
             htmlFor="floating_email"
             className="peer-focus:font-medium absolute text-sm text-slate-600 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-black dark:peer-focus:text-white peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
           >
-            Addresse mail
+            {t('email')}
           </label>
         </motion.div>
         <motion.div
@@ -169,7 +172,7 @@ export default function Form() {
             htmlFor="floating_subject"
             className="peer-focus:font-medium absolute text-sm text-slate-600 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-black dark:peer-focus:text-white peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
           >
-            Sujet
+            {t('subject')}
           </label>
         </motion.div>
         <motion.div
@@ -187,7 +190,7 @@ export default function Form() {
             htmlFor="floating_message"
             className="peer-focus:font-medium absolute text-sm text-slate-600 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-black dark:peer-focus:text-white peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
           >
-            Message
+            {t('message')}
           </label>
         </motion.div>
 
@@ -207,7 +210,7 @@ export default function Form() {
               type="submit"
               className="relative w-full px-4 py-3 overflow-hidden text-sm font-medium text-center text-white transition duration-300 rounded-lg outline-none bg-neutral-800 dark:bg-customLight active:scale-95 disabled:opacity-50 disabled:active:scale-100"
             >
-              Send
+              {t('send')}
             </button>
           </Ripples>
         </motion.div>

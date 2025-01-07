@@ -12,6 +12,7 @@ import {
 import { navigationRoutes } from "../utils/utils";
 import { useAnimationContext } from "../context/AnimationContext";
 import { useLanguageContext } from "../context/LanguageContext";
+import { useTranslation } from "next-i18next";
 import LanguagePicker from "./Utils/LanguagePicker";
 
 /* TopNavbar Component */
@@ -95,7 +96,7 @@ export default function TopNavbar() {
           variants={FadeContainer}
           className="flex items-center md:gap-2"
         >
-          {navigationRoutes.slice(0, 7).map((link, index) => {
+          {navigationRoutes.slice(0, 7).map((link: string, index: number) => {
             return <NavItem key={index} text={link} href={`/${link}`}/>;
           })}
           <LanguagePicker  />
@@ -109,6 +110,7 @@ export default function TopNavbar() {
 function NavItem({ href, text }: { href: string; text: string }) {
   const router = useRouter();
   const {language} = useLanguageContext();
+  const {t} = useTranslation('common');
   const { animationComplete, setAnimationComplete } = useAnimationContext();
   const link = (href === "/home" ? "/" : href);
   const isActive = animationComplete && router.asPath === "/" && href === "/about" || router.asPath === link && !animationComplete;
@@ -145,7 +147,7 @@ function NavItem({ href, text }: { href: string; text: string }) {
       href={href === "/home" || href === "/about" ? "/" : href}
     >
       <motion.p className="capitalize" variants={popUp}>
-        {text}
+        {t(text)}
       </motion.p>
     </Link>
   );

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { useTranslation } from 'next-i18next'
 
 type ArtistProps = {
   name: string;
@@ -16,6 +17,8 @@ export default function Artist({
   popularity,
   id,
 }: ArtistProps) {
+  const {t} = useTranslation('common');
+
   return (
     <Link
       rel="noreferrer"
@@ -45,7 +48,7 @@ export default function Artist({
             {name}
           </h2>
           <p className="text-xs text-gray-500 origin-left transform sm:text-sm md:text-base md:font-medium line-clamp-1">
-            Popularity: {popularity}
+            {t('popularity')}: {popularity}
           </p>
         </div>
       </>

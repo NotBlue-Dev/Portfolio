@@ -13,9 +13,9 @@ import Track from "components/Stats/Track";
 import fetcher from "lib/fetcher";
 import useSWR from "swr";
 import GitHubActivityGraph from "@components/Stats/GithubActivityGraph";
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { GetStaticPropsContext } from "next";
 import { useTranslation } from 'next-i18next'
+import { GetStaticPropsContext } from "next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 type Stats = {
   title: string;
@@ -65,7 +65,7 @@ export default function Stats() {
             variants={fromLeftVariant}
             className={`text-4xl  md:text-5xl font-bold text-neutral-900 dark:text-neutral-200`}
           >
-            {t('stats')}
+            {t('statistics')}
           </AnimatedHeading>
           <AnimatedText
             variants={opacityVariant}
@@ -101,6 +101,13 @@ export default function Stats() {
             style={{
               maxWidth:"100% !important",
               color: "#ffffff", // Set legend color to white
+            }}
+            labels={{months: [t('january'), t('february'), t('march'), t('april'), t('may'), t('june'), t('july'), t('august'), t('september'), t('october'), t('november'), t('december')],
+              legend:{
+                less:t('less'),
+                more:t('plus')
+              },
+              totalCount:`{{count}} ${t('contribOnYear')}`
             }}
             blockMargin={7.8}
             blockSize={15}
@@ -160,17 +167,17 @@ export default function Stats() {
             variants={opacityVariant}
             className="text-3xl font-bold capitalize sm:text-4xl text-neutral-900 dark:text-neutral-200"
           >
-            Mon top artiste
+            {t('topArtists')}
           </AnimatedHeading>
           <AnimatedText
             variants={opacityVariant}
             className="mt-4 text-gray-700 dark:text-gray-300"
           >
-            Mon artiste  {artists ? "le" : "les"} plus écoutés
+            {t('myArtist')}  {artists ? t('le') : t('les')} {t('mostListenedShort')}
             <span>
               {artists ? (
                 <>
-                  {" est "}
+                  {" "}{t('is')}{" "}
                   <span className="font-semibold">{artists?.[0]?.name}</span>
                 </>
               ) : (
@@ -183,7 +190,7 @@ export default function Stats() {
           <div className="flex flex-col gap-0 my-10 font-barlow">
             {artists ? (
               artists?.length === 0 ? (
-                <div className="text-sm">Pas assez de données</div>
+                <div className="text-sm">{t('notEnoughData')}</div>
               ) : (
                 artists?.map((artist: SpotifyArtist, index: number) => (
                   <Artist
@@ -268,5 +275,6 @@ export async function getStaticProps({ locale }: GetStaticPropsContext) {
     props: {
       ...(await serverSideTranslations(locale || 'fr', ["common"])),
     },
+    revalidate: 60 * 60 * 24 , // everyday
   };
 }

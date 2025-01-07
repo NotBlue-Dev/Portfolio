@@ -22,8 +22,10 @@ import {
   import { getFormattedDate } from "@utils/date";
   import { opacityVariant } from "@content/FramerMotionVariants";
   import useSWR from "swr";
-  
+  import { useTranslation } from 'next-i18next'
+
   export default function GitHubActivityGraph() {
+    const {t} = useTranslation('common');
     const { data: githubActivity } = useSWR(
       "/api/stats/github-contribution",
       fetcher
@@ -36,13 +38,13 @@ import {
             variants={opacityVariant}
             className="text-3xl font-bold capitalize sm:text-4xl text-neutral-900 dark:text-neutral-200"
           >
-            Graphe d'activités Github
+            {t('githubGraph')}
           </AnimatedHeading>
           <AnimatedText
             variants={opacityVariant}
             className="my-4 text-gray-700 dark:text-gray-300"
           >
-            Un graphique d'activité généré dynamiquement pour afficher mes activités GitHub des 31 derniers jours.
+            {t('githubGraphDesc')}
           </AnimatedText>
           <ResponsiveContainer width="100%" height={300}>
             {githubActivity?.contributions ? (
@@ -95,13 +97,13 @@ import {
             variants={opacityVariant}
             className="text-3xl font-bold capitalize sm:text-4xl text-neutral-900 dark:text-neutral-200"
           >
-            Ma productivité par jour de la semaine
+            {t('productivity')}
           </AnimatedHeading>
           <AnimatedText
             variants={opacityVariant}
             className="my-4 text-gray-700 dark:text-gray-300"
           >
-            Une représentation visuelle de ma productivité basée sur le nombre de contributions effectuées chaque jour de la semaine.
+            {t('productivityDesc')}
           </AnimatedText>
           <ResponsiveContainer width="100%" height={300}>
             {githubActivity?.contributionCountByDayOfWeek ? (
@@ -134,15 +136,17 @@ import {
     active,
     payload,
   }: TooltipProps<ValueType, NameType>) => {
+    const {t} = useTranslation('common');
+
     if (active && payload && payload.length) {
       return (
         <div className="p-5 rounded-md bg-customLight text-white dark:text-gray-200 text-sm max-w-[250px] w-fit shadow-lg">
           <p className="label">
-            <span className="font-medium">Date :</span>{" "}
+            <span className="font-medium">{t('date')} :</span>{" "}
             {getFormattedDate(new Date(payload[0].payload.date))}
           </p>
           <p className="desc">
-            <span className="font-medium">Commit Count :</span> {payload[0].value}
+            <span className="font-medium">{t('commitCount')} :</span> {payload[0].value}
           </p>
         </div>
       );
@@ -155,14 +159,16 @@ import {
     active,
     payload,
   }: TooltipProps<ValueType, NameType>) => {
+    const {t} = useTranslation('common');
+
     if (active && payload && payload.length) {
       return (
         <div className="p-5 rounded-md bg-customLight text-white text-sm max-w-[250px] w-fit shadow-lg">
           <p className="label">
-            <span className="font-medium">Day :</span> {payload[0].payload.day}
+            <span className="font-medium">{t('day')} :</span> {payload[0].payload.day}
           </p>
           <p className="desc">
-            <span className="font-medium">Commit Count :</span> {payload[0].value}
+            <span className="font-medium">{t('commitCount')} :</span> {payload[0].value}
           </p>
         </div>
       );
@@ -172,20 +178,22 @@ import {
   };
   
   function LoadingBarChart() {  
+    const {t} = useTranslation('common');
+
     const barGraphLoadingData = [
-      { day: "Monday", count: 3 },
-      { day: "Tuesday", count: 5 },
-      { day: "Wednesday", count: 7 },
-      { day: "Thursday", count: 9 },
-      { day: "Friday", count: 11 },
-      { day: "Saturday", count: 13 },
-      { day: "Sunday", count: 15 },
+      { day: t('monday'), count: 3 },
+      { day: t('tuesday'), count: 5 },
+      { day: t('wednesday'), count: 7 },
+      { day: t('thursday'), count: 9 },
+      { day: t('friday'), count: 11 },
+      { day: t('saturday'), count: 13 },
+      { day: t('sunday'), count: 15 },
     ];
   
     return (
       <div className="pointer-events-none relative">
         <div className="grid place-items-center font-semibold text-base sm:text-lg absolute inset-0 z-1">
-          Loading Data...
+          {t('loadingData')}...
         </div>
         <BarChart
           width={730}
@@ -213,7 +221,9 @@ import {
     );
   }
   
-  function LoadingAreaChart() {  
+  function LoadingAreaChart() {   
+    const {t} = useTranslation('common');
+
     const areaChartLoadingData = [
       { shortDate: "09", contributionCount: 3 },
       { shortDate: "10", contributionCount: 5 },
@@ -238,7 +248,7 @@ import {
     return (
       <div className="pointer-events-none relative">
         <div className="grid place-items-center font-semibold text-base sm:text-lg absolute inset-0 z-1">
-          Loading Data...
+        {t('loadingData')}...
         </div>
         <AreaChart
           width={730}

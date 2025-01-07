@@ -11,10 +11,12 @@ import { SiSpotify } from "react-icons/si";
 import useSWR from "swr";
 import fetcher from "lib/fetcher";
 import { Song } from "lib/types";
+import { useTranslation } from 'next-i18next';
 
 export default function Footer() {
   const { data: currentSong } = useSWR("/api/now-playing", fetcher);
   let navigationRoutesCleanedUp = navigationRoutes.filter((route) => route !== "cv");
+  
   return (
     <footer className="justify-center mx-auto my-11 mb-10 max-w-7xl relative p-4 text-gray-600 dark:text-gray-400/50 font-inter print:hidden">
       <motion.div
@@ -71,25 +73,29 @@ export default function Footer() {
 }
 
 function FooterLink({ route, text }: { route: string; text: string }) {
+  const {t} = useTranslation('common');
+
   return (
     <Link href={`/${route}`}>
       <motion.p
         className="hover:text-black dark:hover:text-white w-fit"
         variants={popUp}
       >
-        {text}
+        {t(text)}
       </motion.p>
     </Link>
   );
 }
 
 function NotPlaying() {
+  const {t} = useTranslation('common');
+
   return (
     <div className="flex flex-row-reverse items-center justify-between gap-2 sm:flex-row sm:justify-start">
       <SiSpotify className="w-6 h-6" />
       <div className="flex flex-col sm:flex-row sm:items-center sm:gap-3">
         <div className="font-semibold text-black md:text-lg dark:text-white">
-          Not Playing
+          {t('notPlaying')}
         </div>
         <span className="hidden md:inline-flex">—</span>
         <p className="text-xs text-gray-500 sm:text-sm">Spotify</p>
@@ -136,3 +142,4 @@ function WhenPlaying({ song }: { song: Song }) {
     </div>
   );
 }
+

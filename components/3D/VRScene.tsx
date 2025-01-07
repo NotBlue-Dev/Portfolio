@@ -9,7 +9,7 @@ import { SheetProvider, PerspectiveCamera, useCurrentSheet } from '@theatre/r3f'
 import SnowParticleSystem from './SnowParticleSystem';
 import { LoadingScreen } from '../Utils/LoadingScreen';
 import { useAnimationContext } from '../../context/AnimationContext';
-import { useTranslation } from "react-i18next";
+import { useTranslation } from 'next-i18next'
 // Preload the GLTF model
 useGLTF.preload('./3D/cv1.glb');
 
