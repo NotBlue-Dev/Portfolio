@@ -199,8 +199,8 @@ export default function Form() {
             className="flex justify-center w-full"
             color="rgba(225, 225,225,0.2)"
             placeholder={"test"}
-            onPointerEnterCapture={() => {}}  // Dummy function
-            onPointerLeaveCapture={() => {}}  // Dummy function
+            onPointerEnterCapture={() => {return null;}}  // Dummy function
+            onPointerLeaveCapture={() => {return null;}}  // Dummy function
           >
             <button
               ref={sendButtonRef}

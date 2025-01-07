@@ -8,6 +8,8 @@ import { AppProps } from "next/app";
 import { AnimationProvider } from '../context/AnimationContext';
 import { useAnimationContext } from '../context/AnimationContext';
 import { NextRouter } from "next/router";
+import { LanguageProvider } from "context/LanguageContext";
+import { appWithTranslation } from "next-i18next";
 
 NProgress.configure({
   easing: "ease",
@@ -48,10 +50,12 @@ function LayoutWithAnimation({ router, pageProps, Component }: { router: NextRou
   const { animationComplete } = useAnimationContext(); // Now safely within the provider
 
   return (
-    <Layout showFooter={router.asPath === "/" ? animationComplete : true}>
-      <Component {...pageProps} />
-    </Layout>
+    <LanguageProvider>
+      <Layout showFooter={router.asPath === "/" ? animationComplete : true}>
+        <Component {...pageProps} />
+      </Layout>
+    </LanguageProvider>
   );
 }
 
-export default MyApp;
+export default appWithTranslation(MyApp);

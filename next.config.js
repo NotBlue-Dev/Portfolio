@@ -2,6 +2,8 @@
  * @type {import('next').NextConfig}
  */
 
+const { i18n } = require('./next-i18next.config')
+
 const withPWA = require("next-pwa")({
   dest: "public",
   register: true,
@@ -12,6 +14,7 @@ const withPWA = require("next-pwa")({
 
 module.exports = withPWA({
   reactStrictMode: true,
+  i18n,
   images: {
     domains: [
       "imgur.com",
@@ -19,8 +22,6 @@ module.exports = withPWA({
       "activity-graph.herokuapp.com",
       "i.scdn.co", // images from spotify
       "scontent.cdninstagram.com", // instagram media
-      "www.shutterstock.com",
-      "www.pngkey.com",
     ],
   },
   typescript: {

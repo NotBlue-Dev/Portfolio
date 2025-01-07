@@ -5,7 +5,6 @@ import AnimatedDiv from "components/FramerMotion/AnimatedDiv";
 import AnimatedHeading from "components/FramerMotion/AnimatedHeading";
 import AnimatedText from "components/FramerMotion/AnimatedText";
 import Artist from "components/Stats/Artist";
-import GitHubActivityGraph from "components/GithubActivityGraph";
 import GitHubCalendar from "react-github-calendar";
 import { fromLeftVariant } from "@content/FramerMotionVariants";
 import React from "react";
@@ -13,6 +12,7 @@ import StatsCard from "components/Stats/StatsCard";
 import Track from "components/Stats/Track";
 import fetcher from "lib/fetcher";
 import useSWR from "swr";
+import GitHubActivityGraph from "@components/Stats/GithubActivityGraph";
 
 type Stats = {
   title: string;

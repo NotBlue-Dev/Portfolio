@@ -1,13 +1,16 @@
 import React, { useState } from "react";
-import Project from "components/Project";
+import Project from "components/Project/Project";
 import AnimatedDiv from "@components/FramerMotion/AnimatedDiv";
 import { FadeContainer } from "@content/FramerMotionVariants";
 import { getProjects } from "lib/supabase";
 import { ProjectType } from "lib/types";
-import CreateAnIssue from "components/CreateAnIssue";
+import CreateAnIssue from "@components/Project/CreateAnIssue";
 import AnimatedHeading from "@components/FramerMotion/AnimatedHeading";
 import AnimatedText from "@components/FramerMotion/AnimatedText";
 import { fromLeftVariant, opacityVariant } from "@content/FramerMotionVariants";
+import { GetStaticPropsContext } from "next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useTranslation } from 'next-i18next'
 
 const DEFAULT_PROJECT_COUNT = 5; // Default number of projects to show
 
@@ -19,6 +22,7 @@ export default function Projects({
   error: boolean;
 }) {
   const [visibleProjects, setVisibleProjects] = useState(DEFAULT_PROJECT_COUNT);
+  const { t } = useTranslation('common');
 
   if (error) return <CreateAnIssue />;
 
@@ -33,7 +37,7 @@ export default function Projects({
           variants={fromLeftVariant}
           className={`text-4xl  md:text-5xl mt-16 font-bold text-neutral-900 dark:text-neutral-200`}
         >
-          Projets
+          {t('projects')}
         </AnimatedHeading>
         <AnimatedText
           variants={opacityVariant}
@@ -70,13 +74,17 @@ export default function Projects({
     </>
   );
 }
-
-export async function getStaticProps() {
+export async function getStaticProps({ locale }: GetStaticPropsContext) {
   const { projects, error } = await getProjects();
+
   return {
     props: {
       projects,
       error,
+      ...(await serverSideTranslations(locale || 'fr', [
+        'common',
+      ])),
     },
+    revalidate: 60 * 60 * 24 , // everyday
   };
 }

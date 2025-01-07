@@ -1,7 +1,7 @@
 import { BsGithub } from "react-icons/bs";
 import { MdOutlineLink } from "react-icons/md";
 import Link from "next/link";
-import OgImage from "components/OgImage";
+import OgImage from "@components/Utils/OgImage";
 import { ProjectType } from "lib/types";
 import { getFormattedDate } from "@utils/date";
 

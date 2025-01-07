@@ -14,7 +14,7 @@ import { Song } from "lib/types";
 
 export default function Footer() {
   const { data: currentSong } = useSWR("/api/now-playing", fetcher);
-
+  let navigationRoutesCleanedUp = navigationRoutes.filter((route) => route !== "cv");
   return (
     <footer className="justify-center mx-auto my-11 mb-10 max-w-7xl relative p-4 text-gray-600 dark:text-gray-400/50 font-inter print:hidden">
       <motion.div
@@ -34,17 +34,15 @@ export default function Footer() {
 
         <section className="grid grid-cols-3 gap-10">
           <div className="flex flex-col gap-4 capitalize">
-            {navigationRoutes.slice(0, 5).map((text, index) => {
+            {navigationRoutesCleanedUp.slice(0, 5).map((text, index) => {
               return <FooterLink key={index} route={text} text={text} />;
             })}
           </div>
           <div className="flex flex-col gap-4 capitalize">
-            {navigationRoutes
-              .slice(5, navigationRoutes.length)
+            {navigationRoutesCleanedUp
+              .slice(5, navigationRoutesCleanedUp.length)
               .map((route, index) => {
-                let text = route;
-                if (route === "rss") text = "RSS";
-                return <FooterLink key={index} route={route} text={text} />;
+                return <FooterLink key={index} route={route} text={route} />;
               })}
           </div>
           <div className="flex flex-col gap-4 capitalize">

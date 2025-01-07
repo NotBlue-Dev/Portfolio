@@ -11,6 +11,8 @@ import {
 } from "../content/FramerMotionVariants";
 import { navigationRoutes } from "../utils/utils";
 import { useAnimationContext } from "../context/AnimationContext";
+import { useLanguageContext } from "../context/LanguageContext";
+import LanguagePicker from "./Utils/LanguagePicker";
 
 /* TopNavbar Component */
 export default function TopNavbar() {
@@ -96,6 +98,7 @@ export default function TopNavbar() {
           {navigationRoutes.slice(0, 7).map((link, index) => {
             return <NavItem key={index} text={link} href={`/${link}`}/>;
           })}
+          <LanguagePicker  />
         </motion.div>
       </motion.nav>
     </div>
@@ -105,6 +108,7 @@ export default function TopNavbar() {
 // NavItem Container
 function NavItem({ href, text }: { href: string; text: string }) {
   const router = useRouter();
+  const {language} = useLanguageContext();
   const { animationComplete, setAnimationComplete } = useAnimationContext();
   const link = (href === "/home" ? "/" : href);
   const isActive = animationComplete && router.asPath === "/" && href === "/about" || router.asPath === link && !animationComplete;
@@ -128,12 +132,15 @@ function NavItem({ href, text }: { href: string; text: string }) {
           window.open("/images/resume.png", "_blank");
         }
 
-        if(href === "/about") {
-          setAnimationComplete(true);
-        } else {
-          setAnimationComplete(false);
-        }
+        setTimeout(() => {
+          if(href === "/about") {
+            setAnimationComplete(true);
+          } else {
+            setAnimationComplete(false);
+          }
+        }, 500);
       }}
+      locale={language}
       className={className}
       href={href === "/home" || href === "/about" ? "/" : href}
     >

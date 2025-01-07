@@ -1,3 +1,5 @@
+import { StaticImageData } from 'next/image';
+
 export interface IExternalUrls {
     spotify: string;
   }
@@ -105,6 +107,18 @@ export interface IExternalUrls {
 
   export interface Asset {
     assets: { download_count: number }[];
+  }
+  
+  export interface FlagDetails {
+    name: string;
+    img: StaticImageData;
+    alt: string;
+  }
+
+  export interface Flags {
+    EN: FlagDetails;
+    FR: FlagDetails;
+    [key: string]: FlagDetails | undefined; // Index signature
   }
 
   export interface GitHubRepo {
