@@ -9,7 +9,7 @@ export default async function handler(
 
   const tracks = items.map((track) => ({
     title: track.name,
-    artist: track.artists.map((artist: any) => artist.name).join(", "),
+    artist: track.artists.map((artist: {name:string}) => artist.name).join(", "),
     url: track.external_urls.spotify,
     coverImage: track.album.images[1],
   }));

@@ -90,10 +90,10 @@ export interface IExternalUrls {
     type: string;
     site_admin: boolean;
     name: string;
-    company: any;
+    company: unknown;
     blog: string;
     location: string;
-    email: any;
+    email: unknown;
     hireable: boolean;
     bio: string;
     twitter_username: string;
@@ -220,7 +220,7 @@ export interface IExternalUrls {
     has_pages: boolean;
     has_discussions: boolean;
     forks_count: number;
-    mirror_url: any;
+    mirror_url: unknown;
     archived: boolean;
     disabled: boolean;
     open_issues_count: number;
@@ -268,7 +268,7 @@ export interface IExternalUrls {
     reason: string;
     risk: number;
     mx_host: string;
-    possible_typo: any[];
+    possible_typo: unknown[];
     mx_ip: string;
     mx_info: string;
     last_changed_at: string;

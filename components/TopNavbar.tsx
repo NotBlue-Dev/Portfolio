@@ -125,13 +125,12 @@ function NavItem({ href, text }: { href: string; text: string }) {
           const newAnimationState = href === "/about";
           if (animationComplete !== newAnimationState) {
             setAnimationComplete(newAnimationState);
-            console.log(`clicked ${href}, setting animationComplete to ${newAnimationState}`);
           }
         }
 
         if(href === "/cv") {
           e.preventDefault();
-          window.open("/images/resume.png", "_blank");
+          window.open(`/images/resume-${language === "fr" ? "fr" : "en"}.png`, "_blank");
         }
 
         setTimeout(() => {

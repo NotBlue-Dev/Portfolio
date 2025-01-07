@@ -46,7 +46,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 }
 
 // Create a new component that can use the context
-function LayoutWithAnimation({ router, pageProps, Component }: { router: NextRouter, pageProps: any, Component: React.ComponentType<any> }) {
+function LayoutWithAnimation({ router, pageProps, Component }: { router: NextRouter, pageProps: Record<string, unknown>, Component: React.ComponentType<unknown> }) {
   const { animationComplete } = useAnimationContext(); // Now safely within the provider
 
   return (

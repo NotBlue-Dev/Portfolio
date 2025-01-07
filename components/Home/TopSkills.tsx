@@ -44,7 +44,6 @@ export default function SkillSection() {
               className="flex items-center justify-center gap-4 p-4 origin-center transform rounded-md sm:justify-start bg-gray-50 hover:bg-white dark:bg-customLight hover:dark:bg-customLight dark:border-neutral-700 md:origin-top group"
             >
               <div className="relative transition pointer-events-none select-none group-hover:scale-110 sm:group-hover:scale-100">
-                {/* @ts-ignore */}
                 <Icon className="w-8 h-8" />
               </div>
               <p className="hidden text-sm font-semibold pointer-events-none select-none sm:inline-flex md:text-base">

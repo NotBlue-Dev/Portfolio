@@ -15,7 +15,7 @@ import { useTranslation } from 'next-i18next';
 
 export default function Footer() {
   const { data: currentSong } = useSWR("/api/now-playing", fetcher);
-  let navigationRoutesCleanedUp = navigationRoutes.filter((route) => route !== "cv");
+  const navigationRoutesCleanedUp = navigationRoutes.filter((route) => route !== "cv");
   
   return (
     <footer className="justify-center mx-auto my-11 mb-10 max-w-7xl relative p-4 text-gray-600 dark:text-gray-400/50 font-inter print:hidden">

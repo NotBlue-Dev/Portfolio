@@ -11,7 +11,7 @@ export const supabase = createClient(
  * The results are sorted by the 'created_at' column in descending order.
  */
 export async function getProjects(locale: string) {
-  let { data: projects, error } = await supabase
+  const { data: projects, error } = await supabase
     .from("projects")
     .select("*")
     .eq("pinned", "true")
@@ -28,7 +28,7 @@ export async function getProjects(locale: string) {
  * This function will retrieve the individual custom data from the supabase such as linkedin data
  */
 export async function getUserDataValue(key: string, lang:string) {
-  let { data, error } = await supabase
+  const { data, error } = await supabase
     .from("user_data")
     .select("value")
     .eq("key", key)
@@ -48,7 +48,7 @@ export async function getUserDataValue(key: string, lang:string) {
   };
 }
 
-export async function setUserDataValue(key: string, value1: any) {
+export async function setUserDataValue(key: string, value1: unknown) {
   const { data, error } = await supabase
     .from("user_data")
     .update({ value: value1 })
