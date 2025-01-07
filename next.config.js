@@ -23,6 +23,7 @@ module.exports = withPWA({
       "i.scdn.co", // images from spotify
       "scontent.cdninstagram.com", // instagram media
     ],
+    formats: ['image/webp', 'image/avif'],  
   },
   typescript: {
     ignoreBuildErrors: false,
