@@ -6,7 +6,7 @@ import { useLanguageContext } from "context/LanguageContext";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-const LanguagePicker = () => {
+const LanguagePicker = ({ml = false}: {ml: boolean}) => {
     const { language, setLanguage } = useLanguageContext();
     const [currentLang, setCurrentLang] = useState(language === "fr" ? "FR" : "EN");
     const [isOtherLangVisible, setIsOtherLangVisible] = useState(false); // New state to control visibility
@@ -35,7 +35,7 @@ const LanguagePicker = () => {
 
     return (
       (flags[currentLang] && flags[otherLang]) && (
-        <div ref={ref} className="relative inline-block ml-4 mt-0.5"> 
+        <div ref={ref} className={`relative inline-block ${ml ? "ml-4" : "ml-0"} mt-0.5`}> 
             {/* Current language flag with animation */}
             <motion.div
                 className="cursor-pointer"

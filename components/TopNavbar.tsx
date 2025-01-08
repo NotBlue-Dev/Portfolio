@@ -99,7 +99,7 @@ export default function TopNavbar() {
           {navigationRoutes.slice(0, 7).map((link: string, index: number) => {
             return <NavItem key={index} text={link} href={`/${link}`}/>;
           })}
-          <LanguagePicker  />
+          <LanguagePicker ml  />
         </motion.div>
       </motion.nav>
     </div>
@@ -213,6 +213,11 @@ const MobileMenu = ({
   links: string[];
   handleClick: () => void;
 }) => {
+  const {t} = useTranslation('common');
+  const {language} = useLanguageContext();
+  const { setAnimationComplete } = useAnimationContext();
+  const router = useRouter();
+
   return (
     <motion.div
       className="absolute top-0 left-0 z-10 w-screen h-screen font-normal dark:bg-customBlue sm:hidden"
@@ -227,17 +232,39 @@ const MobileMenu = ({
             link.toLowerCase() === "home" ? "/" : `/${link.toLowerCase()}`;
           return (
             <Link
-              href={navlink}
+              onClickCapture={(e) => {
+                if((navlink === "/about" || navlink === "/") && router.asPath === "/") {
+                  e.preventDefault();
+                  setAnimationComplete(navlink === "/about");
+                }
+
+                if(navlink === "/cv") {
+                  e.preventDefault();
+                  window.open(`/images/resume-${language === "fr" ? "fr" : "en"}.png`, "_blank");
+                }
+
+                setTimeout(() => {
+                  if(navlink === "/about") {
+                    setAnimationComplete(true);
+                  } else {
+                    setAnimationComplete(false);
+                  }
+                }, 500);
+              }}
+              href={navlink === "/home" || navlink === "/about" ? "/" : navlink}
               key={`mobileNav-${index}`}
               onClick={handleClick}
               className="flex w-auto py-4 text-base font-semibold text-gray-900 capitalize border-b border-gray-300 cursor-pointer dark:border-gray-700 dark:text-gray-100"
             >
               <motion.p variants={mobileNavItemSideways}>
-                {link === "rss" ? link.toUpperCase() : link}
+                {t(link)}
               </motion.p>
             </Link>
           );
         })}
+        <motion.div className="flex justify-start mt-4">
+          <LanguagePicker ml={false} />
+        </motion.div>
       </motion.nav>
     </motion.div>
   );

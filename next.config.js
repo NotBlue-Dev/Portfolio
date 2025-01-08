@@ -9,11 +9,7 @@ const withPWA = require("next-pwa")({
   register: true,
   skipWaiting: true,
   disable: process.env.NODE_ENV === "development",
-  publicExcludes: ["!resume.pdf"],
-});
-
-process.on('unhandledRejection', error => {
-	console.log('unhandledRejection', error);
+  publicExcludes: ["!resume-fr.pdf", "!resume-en.pdf"],
 });
 
 module.exports = withPWA({

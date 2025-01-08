@@ -122,7 +122,7 @@ export const VRScene = () => {
         <h1 className="absolute font-drukWide top-16 right-14 max-xs:right-4 text-4xl max-xs:text-3xl lg:text-7xl md:text-6xl sm:text-5xl text-white">{t('name')}</h1>
         <div className="absolute font-drukWide bottom-28 left-14 max-xs:left-4">
           <h1 className="lg:text-7xl md:text-6xl text-4xl sm:text-5xl max-xs:text-3xl text-white">{t('developper')}</h1>
-          <h1 className="absolute top-full left-1/2 lg:text-7xl md:text-6xl text-4xl max-xs:text-3xl sm:text-5xl text-white">{t('fullstack')}</h1>
+          <h1 className="absolute top-full left-1/2 max-xs:left-1/4 lg:text-7xl md:text-6xl text-4xl max-xs:text-3xl sm:text-5xl text-white">{t('fullstack')}</h1>
         </div>
         {/* <div className='absolute bottom-8 left-1/2 transform -translate-x-1/2'>
           <div className="mouse"></div>
