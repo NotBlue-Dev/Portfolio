@@ -12,6 +12,10 @@ const withPWA = require("next-pwa")({
   publicExcludes: ["!resume.pdf"],
 });
 
+process.on('unhandledRejection', error => {
+	console.log('unhandledRejection', error);
+});
+
 module.exports = withPWA({
   reactStrictMode: true,
   i18n,

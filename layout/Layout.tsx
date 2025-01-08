@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import TopNavbar from "../components/TopNavbar";
 import Footer from "../components/Footer";
+import { Analytics } from "@vercel/analytics/react"
 
 export const metadata: Metadata = {
   title: "Enzo Dubocage portfolio",
@@ -18,6 +19,7 @@ export default function Layout({
     <>
       <TopNavbar />
       <main>{children}</main>
+      <Analytics/>
       {showFooter && <Footer />}
     </>
   );

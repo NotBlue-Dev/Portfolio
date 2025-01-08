@@ -17,6 +17,7 @@
     "@theatre/core": "^0.7.2",
     "@theatre/r3f": "^0.7.2",
     "@theatre/studio": "^0.7.2",
+    "@vercel/analytics": "^1.4.1",
     "classnames": "^2.5.1",
     "framer-motion": "^11.15.0",
     "i18next": "^24.2.1",
