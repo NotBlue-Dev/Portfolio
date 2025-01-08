@@ -16,6 +16,8 @@ import GitHubActivityGraph from "@components/Stats/GithubActivityGraph";
 import { useTranslation } from 'next-i18next'
 import { GetStaticPropsContext } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import Metadata from "@components/MetaData";
+import pageMeta from "@content/pageMeta";
 
 type Stats = {
   title: string;
@@ -57,6 +59,12 @@ export default function Stats() {
 
   return (
     <>
+      <Metadata
+        title={pageMeta.projects.title}
+        description={pageMeta.projects.description}
+        previewImage={pageMeta.projects.image}
+        keywords={pageMeta.projects.keywords}
+      />
       <section className="justify-center mx-auto my-11 mb-10 max-w-7xl relative p-4">
         <div
         className={`w-full flex flex-col gap-3 py-5 select-none mb-10`}

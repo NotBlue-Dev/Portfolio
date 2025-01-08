@@ -9,6 +9,8 @@ import { Experience } from "lib/types";
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { GetStaticPropsContext } from "next";
 import { getUserDataValue } from 'lib/supabase';
+import Metadata from "@components/MetaData";
+import pageMeta from "@content/pageMeta";
 
 export default function Home({ linkedin } : { linkedin : {value: {experiences: Experience[]}}[]}) {
   const { animationComplete } = useAnimationContext();
@@ -16,6 +18,12 @@ export default function Home({ linkedin } : { linkedin : {value: {experiences: E
 
   return (
       <>
+        <Metadata
+          title={pageMeta.projects.title}
+          description={pageMeta.projects.description}
+          previewImage={pageMeta.projects.image}
+          keywords={pageMeta.projects.keywords}
+        />
         <section
           className={`${
             animationComplete ? "" : "h-screen"

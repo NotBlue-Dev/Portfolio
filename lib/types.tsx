@@ -21,6 +21,21 @@ export type SpotifyTrack = {
   artist: string;
 };
 
+export type PageData = {
+  title: string;
+  description: string;
+  image: string;
+  keywords: string;
+};
+
+export type PageMeta = {
+  home: PageData;
+  stats: PageData;
+  contact: PageData;
+  projects: PageData;
+  about: PageData;
+};
+
 /* Spotify Artist  */
 export type SpotifyArtist = {
   id: number;

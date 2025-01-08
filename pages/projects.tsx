@@ -11,6 +11,8 @@ import { fromLeftVariant, opacityVariant } from "@content/FramerMotionVariants";
 import { GetStaticPropsContext } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from 'next-i18next'
+import Metadata from "@components/MetaData";
+import pageMeta from "@content/pageMeta";
 
 const DEFAULT_PROJECT_COUNT = 5; // Default number of projects to show
 
@@ -32,6 +34,12 @@ export default function Projects({
 
   return (
     <>
+      <Metadata
+        title={pageMeta.projects.title}
+        description={pageMeta.projects.description}
+        previewImage={pageMeta.projects.image}
+        keywords={pageMeta.projects.keywords}
+      />
       <section className="justify-center mx-auto my-11 mb-10 max-w-7xl relative p-4">
         <AnimatedHeading
           variants={fromLeftVariant}
