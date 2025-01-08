@@ -94,7 +94,7 @@ const Experiences = ({ parsedLinkedIn } : {parsedLinkedIn: Experience[]}) => {
                                 <span> - </span>
                                 <span>
                                     {!job.ends_at ? (
-                                    "Present"
+                                    t('present')
                                     ) : (
                                     <>
                                         {months[job.ends_at.month - 1]}{" "}

@@ -140,7 +140,7 @@ export default function Stats() {
                 <span className="w-20 h-6 bg-white dark:bg-darkSecondary"></span>
               )}
             </span>{" "}
-            {!topTracks ? t('mySongs') : t('son')} {t('descSpotify')}
+            {!topTracks ? t('mySongs') : t('son')} {!topTracks ? t('les') : t('le')} {t('descSpotify')}
           </AnimatedText>
           <div className="flex flex-col gap-0 my-10 font-barlow">
             {topTracks ? (

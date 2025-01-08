@@ -105,9 +105,11 @@ function NotPlaying() {
 }
 
 function WhenPlaying({ song }: { song: Song }) {
+  const {t} = useTranslation('common');
+
   return (
     <div className="flex flex-col gap-4">
-      <h4 className="text-lg font-semibold dark:text-gray-300">Now Playing</h4>
+      <h4 className="text-lg font-semibold dark:text-gray-300">{t('nowPlaying')}</h4>
       <Link
         href={song.songUrl}
         className="flex items-center justify-between p-3 bg-gray-200 rounded-sm dark:bg-customLight sm:p-4"
