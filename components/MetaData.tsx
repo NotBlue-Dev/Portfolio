@@ -19,7 +19,7 @@ export default function MetaData({
   suffix,
 }: Props) {
   const { currentURL } = useWindowLocation();
-  const faviconHref = "/favicon-dark.ico";
+  const faviconHref = "/favicon.ico";
 
   return (
     <NextSeo
