@@ -35,10 +35,10 @@ const LanguagePicker = ({ml = false}: {ml: boolean}) => {
 
     return (
         (flags[currentLang] && flags[otherLang]) && (
-          <div ref={ref} className={`relative flex ${ml ? "ml-4" : "ml-0"} mt-0.5`}> 
+          <div ref={ref} className={`relative inline-block ${ml ? "ml-4" : "ml-0"} mt-0.5`}> 
               {/* Current language flag with animation */}
               <motion.div
-                  className="cursor-pointer flex-row"
+                  className="cursor-pointer flex flex-row"
                   onClick={() => setIsOtherLangVisible(!isOtherLangVisible)} // Toggle visibility
                   initial={{ opacity: 0, scale: 0.5 }}
                   animate={{ opacity: 1, scale: 1 }}
