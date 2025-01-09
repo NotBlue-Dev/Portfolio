@@ -45,6 +45,6 @@
       ],
     },          
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "next-i18next.config.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "next-i18next.config.js", "pages/sitemap.xml.jsx" ],
   "exclude": ["node_modules"]
 }

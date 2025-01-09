@@ -1,0 +1,2 @@
+User-agent: *
+Sitemap: https://portfolio-three-henna-37.vercel.app/sitemap.xml

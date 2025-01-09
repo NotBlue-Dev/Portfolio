@@ -1,0 +1,9 @@
+{
+    "name": "Enzo Dubocage",
+    "short_name": "Enzo Dubocage",
+    "theme_color": "#fff",
+    "background_color": "#151f33",
+    "display": "standalone",
+    "scope": "/",
+    "start_url": "/"
+}

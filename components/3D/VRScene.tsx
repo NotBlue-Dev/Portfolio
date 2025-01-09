@@ -13,7 +13,7 @@ import { useTranslation } from 'next-i18next'
 // Preload the GLTF model
 useGLTF.preload('./3D/cv1.glb');
 
-const VRHeadset = ({setLoading, loading} : {setLoading: (bool: boolean) => void, loading: boolean}) => {
+const VRHeadset = ({setLoading, loading, isScrolling, setIsScrolling} : {setLoading: (bool: boolean) => void, loading: boolean, setIsScrolling: (bool: boolean) => void, isScrolling: boolean}) => {
   const sheet = useCurrentSheet();
   const scroll = useScroll();
   const { setAnimationComplete, animationComplete } = useAnimationContext();
@@ -67,6 +67,10 @@ const VRHeadset = ({setLoading, loading} : {setLoading: (bool: boolean) => void,
     const position = scroll.offset * sequenceLength;
     sheet.sequence.position = position;
   
+    if (position > 0 && !isScrolling) {
+      setIsScrolling(true);
+    }
+
     // Only update the state if it's different from the current state
     const shouldComplete = position >= sequenceLength - 0.5;
     if (animationComplete !== shouldComplete) {
@@ -100,9 +104,11 @@ const VRHeadset = ({setLoading, loading} : {setLoading: (bool: boolean) => void,
 export const VRScene = () => {
   const [loading, setLoading] = React.useState(true);
   const [hide , setHide] = React.useState(false);
+  const [isScrolling, setIsScrolling] = React.useState(false);
+  const [key, setKey] = React.useState(0);
+
   const sheet = getProject('VR Headset', { state: theatreState }).sheet('Scene');
   const { animationComplete, setAnimationComplete } = useAnimationContext();
-  const [key, setKey] = React.useState(0);
   const { t } = useTranslation('common');
 
   useEffect(() => {
@@ -124,14 +130,18 @@ export const VRScene = () => {
           <h1 className="lg:text-7xl md:text-6xl text-4xl sm:text-5xl max-xs:text-3xl text-white">{t('developper')}</h1>
           <h1 className="absolute top-full left-1/2 max-xs:left-1/4 lg:text-7xl md:text-6xl text-4xl max-xs:text-3xl sm:text-5xl text-white">{t('fullstack')}</h1>
         </div>
-        {/* <div className='absolute bottom-8 left-1/2 transform -translate-x-1/2'>
-          <div className="mouse"></div>
-        </div> */}
+        {!isScrolling && (
+          <div className='mouse-container absolute bottom-9 left-1/2 max-3xl:bottom-40'>
+            <div className='mouse'>
+              <span className='scroll-down'></span>
+            </div>
+          </div>
+        )}
         <div className={`z-10 absolute top-0 left-0 w-screen h-screen bg-transparent`}>
             <Canvas gl={{ preserveDrawingBuffer: true, alpha: true }} style={{ background: 'transparent' }}>
               <ScrollControls key={key} pages={4} >
                 <SheetProvider sheet={sheet}>
-                  <VRHeadset setLoading={setLoading} loading={loading} />
+                  <VRHeadset isScrolling={isScrolling} setIsScrolling={setIsScrolling} setLoading={setLoading} loading={loading} />
                 </SheetProvider>
               </ScrollControls>
             </Canvas>

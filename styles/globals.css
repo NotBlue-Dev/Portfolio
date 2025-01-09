@@ -108,43 +108,6 @@ pre::-webkit-scrollbar {
   border-radius: 999px;
 }
 
-
-.mouse {
-	width: 40px;
-	height: 70px;
-	border: 3px solid rgba(255, 255, 255, 0.7); /* Adjusted opacity to 70% */
-	border-radius: 60px;
-	position: relative;
-	&::before {
-		content: '';
-		width: 12px;
-		height: 12px;
-		position: absolute;
-		top: 10px;
-		left: 50%;
-		transform: translateX(-50%);
-		background-color: rgba(255, 255, 255, 0.7); /* Adjusted opacity to 70% */
-		border-radius: 50%;
-		opacity: 1;
-		animation: wheel 2s infinite;
-		-webkit-animation: wheel 2s infinite;
-	}
-}
-
-@keyframes wheel {
-	to {
-		opacity: 0;
-		top: 60px;
-	}
-}
-
-@-webkit-keyframes wheel {
-	to {
-		opacity: 0;
-		top: 60px;
-	}
-}
-
 /* Nprogress bar Custom Styling (force) : STARTS */
 #nprogress .bar {
   background-color: rgba(0, 89, 255, 0.7) !important;
@@ -158,4 +121,68 @@ pre::-webkit-scrollbar {
 
 .card {
   @apply bg-customLight dark:bg-customLight p-5 sm:p-10 flex flex-col sm:flex-row gap-8 items-center max-w-2xl shadow-md rounded-lg mt-[30%] sm:mt-8 transition-all;
+}
+
+@-webkit-keyframes scroll-inner {
+  from {
+    margin-top: 15%;
+  }
+  to {
+    margin-top: 50%;
+  }
+}
+@keyframes scroll-inner {
+  from {
+    margin-top: 15%;
+  }
+  to {
+    margin-top: 50%;
+  }
+}
+@-webkit-keyframes scroll-mouse {
+  from {
+    margin-top: 0;
+  }
+  to {
+    margin-top: 15px;
+  }
+}
+@keyframes scroll-mouse {
+  from {
+    margin-top: 0;
+  }
+  to {
+    margin-top: 15px;
+  }
+}
+div.mouse-container {
+  display: block;
+  height: 100px;
+}
+div.mouse {
+  position: relative;
+  margin: 0 auto;
+  display: block;
+  width: 40px;
+  height: 65px;
+  border: solid 2px #fff;
+  border-radius: 20px;
+  -webkit-animation: scroll-mouse 1.5s;
+  animation: scroll-mouse 1.5s;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+}
+div.mouse span.scroll-down {
+  display: block;
+  width: 8px;
+  height: 8px;
+  background: #fff;
+  border-radius: 50%;
+  margin: 15% auto auto auto;
+  -webkit-animation: scroll-inner 1.5s;
+  animation: scroll-inner 1.5s;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  -webkit-animation-timing-function: ease;
+  animation-timing-function: ease;
 }

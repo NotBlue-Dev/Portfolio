@@ -11,6 +11,7 @@ import { GetStaticPropsContext } from "next";
 import { getUserDataValue } from 'lib/supabase';
 import Metadata from "@components/MetaData";
 import pageMeta from "@content/pageMeta";
+import generateSitemap from "lib/sitemap";
 
 export default function Home({ linkedin } : { linkedin : {value: {experiences: Experience[]}}[]}) {
   const { animationComplete } = useAnimationContext();
@@ -45,6 +46,8 @@ export default function Home({ linkedin } : { linkedin : {value: {experiences: E
 export async function getStaticProps({ locale }: GetStaticPropsContext) {
   const { data: linkedin } = await getUserDataValue("linkedin", locale || 'fr');
 
+  await generateSitemap();
+  
   return {
     props: {
       linkedin,
