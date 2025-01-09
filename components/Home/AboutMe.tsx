@@ -24,7 +24,7 @@ const AboutMe = () => {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                className="text-gray-300"
+                className="text-gray-300 leading-6"
             >
                 {t('helloMyNameIs')}<strong className="text-white">{t('name')}</strong>{t('Iam')}<strong className="text-white">{t('passionatedFullStack')}</strong>{t('firstLine')}
             </motion.p>
@@ -33,7 +33,7 @@ const AboutMe = () => {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                className="text-gray-300"
+                className="text-gray-300 leading-6"
             >
                 {t('student')}<strong className="text-white">{t('iutLannion')}</strong>{t('secondLine')}
             </motion.p>
@@ -42,7 +42,7 @@ const AboutMe = () => {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                className="text-gray-300"
+                className="text-gray-300 leading-6"
             >
                 {t('thirdLine')}<strong className="text-white">{t('autodidacte')}</strong>{t('and')}<strong className="text-white">{t('proExp')}</strong>. 
             </motion.p>
@@ -51,7 +51,7 @@ const AboutMe = () => {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                className="text-gray-300"
+                className="text-gray-300 leading-6"
             >
                 {t('fourthLine')}<strong className="text-white">{t('countries')}</strong>.
             </motion.p>
@@ -60,7 +60,7 @@ const AboutMe = () => {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                className="text-gray-300"
+                className="text-gray-300 leading-6"
             >
                 {t('contactMe')}<strong className="text-white">(notbluue)</strong>{t('whyContactMe')}
             </motion.p> 
