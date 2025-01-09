@@ -43,16 +43,16 @@ export default function Projects({
       <section className="justify-center mx-auto my-11 mb-10 max-w-7xl relative p-4">
         <AnimatedHeading
           variants={fromLeftVariant}
-          className={`text-4xl  md:text-5xl mt-16 font-bold text-neutral-900 dark:text-neutral-200`}
+          className={`text-4xl  md:text-5xl mt-16 font-bold text-neutral-200 dark:text-neutral-200`}
         >
           {t('projects')}
         </AnimatedHeading>
         <AnimatedText
           variants={opacityVariant}
-          className="text-lg text-gray-600 mt-4 dark:text-gray-400"
+          className="text-lg text-gray-400 mt-4 dark:text-gray-400"
         >
           {t('projectAmmountTitle')}{" "}
-          <span className="font-bold text-gray-600 dark:text-gray-200">
+          <span className="font-bold text-gray-200 dark:text-gray-200">
             {projects.length}+
           </span>{" "}
           {t('projectAmmountDesc')}

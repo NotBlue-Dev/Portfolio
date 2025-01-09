@@ -71,13 +71,13 @@ export default function Stats() {
         >
           <AnimatedHeading
             variants={fromLeftVariant}
-            className={`text-4xl  md:text-5xl font-bold text-neutral-900 dark:text-neutral-200`}
+            className={`text-4xl  md:text-5xl font-bold text-neutral-200 dark:text-neutral-200`}
           >
             {t('statistics')}
           </AnimatedHeading>
           <AnimatedText
             variants={opacityVariant}
-            className="text-lg text-gray-600 dark:text-gray-400"
+            className="text-lg text-gray-400 dark:text-gray-400"
           >
             {t('hereAreStats')}
           </AnimatedText>
@@ -95,13 +95,13 @@ export default function Stats() {
         <div className="font-barlow mb-10">
           <AnimatedHeading
             variants={opacityVariant}
-            className="text-3xl font-bold capitalize sm:text-4xl text-neutral-900 dark:text-neutral-200"
+            className="text-3xl font-bold capitalize sm:text-4xl text-neutral-200 dark:text-neutral-200"
           >
             {t('contribGit')}
           </AnimatedHeading>
           <AnimatedText
             variants={opacityVariant}
-            className="my-4 text-gray-700 dark:text-gray-300"
+            className="my-4 text-gray-300 dark:text-gray-300"
           >
             {t('contribGitGraph')}
           </AnimatedText>
@@ -129,14 +129,14 @@ export default function Stats() {
         <div className="font-barlow">
           <AnimatedHeading
             variants={opacityVariant}
-            className="text-3xl font-bold capitalize sm:text-4xl text-neutral-900 dark:text-neutral-200"
+            className="text-3xl font-bold capitalize sm:text-4xl text-neutral-200 dark:text-neutral-200"
           >
             {t('mostListened')}
           </AnimatedHeading>
 
           <AnimatedText
             variants={opacityVariant}
-            className="mt-4 text-gray-700 dark:text-gray-300"
+            className="mt-4 text-gray-300 dark:text-gray-300"
           >
             <span>
               {topTracks ? (
@@ -145,7 +145,7 @@ export default function Stats() {
                   {t('isMy')}
                 </>
               ) : (
-                <span className="w-20 h-6 bg-white dark:bg-darkSecondary"></span>
+                <span className="w-20 h-6 bg-white dark:bg-white"></span>
               )}
             </span>{" "}
             {!topTracks ? t('mySongs') : t('son')} {!topTracks ? t('les') : t('le')} {t('descSpotify')}
@@ -173,13 +173,13 @@ export default function Stats() {
         <div className="font-barlow">
           <AnimatedHeading
             variants={opacityVariant}
-            className="text-3xl font-bold capitalize sm:text-4xl text-neutral-900 dark:text-neutral-200"
+            className="text-3xl font-bold capitalize sm:text-4xl text-neutral-200 dark:text-neutral-200"
           >
             {t('topArtists')}
           </AnimatedHeading>
           <AnimatedText
             variants={opacityVariant}
-            className="mt-4 text-gray-700 dark:text-gray-300"
+            className="mt-4 text-gray-300 dark:text-gray-300"
           >
             {t('myArtist')}  {artists ? t('le') : t('les')} {t('mostListenedShort')}
             <span>
@@ -189,7 +189,7 @@ export default function Stats() {
                   <span className="font-semibold">{artists?.[0]?.name}</span>
                 </>
               ) : (
-                <span className="w-20 h-6 bg-white dark:bg-darkSecondary"></span>
+                <span className="w-20 h-6 bg-white dark:bg-white"></span>
               )}
             </span>{" "}
             
@@ -228,16 +228,16 @@ function LoadingSongs() {
       {Array.from(Array(10).keys()).map((item) => (
         <div
           key={item}
-          className="bg-gray-100 h-[80.8px] first:h-[81.6px] first:md:h-[85.6px] md:h-[84.8px]  dark:bg-darkPrimary  border-l first:border-t border-r border-b  border-gray-300 dark:border-neutral-600 p-4 font-barlow flex items-center gap-5 overflow-hidden relative xs:pl-16 md:!pl-20 "
+          className="bg-customLight h-[80.8px] first:h-[81.6px] first:md:h-[85.6px] md:h-[84.8px]  dark:bg-customLight  border-l first:border-t border-r border-b  border-neutral-600 dark:border-neutral-600 p-4 font-barlow flex items-center gap-5 overflow-hidden relative xs:pl-16 md:!pl-20 "
         >
           <div className="absolute hidden tracking-wider origin-center transform left-4 md:left-6 font-inter xs:inline-flex">
             #{item + 1}
           </div>
 
-          <div className="relative w-12 h-12 origin-center transform bg-gray-300 dark:bg-darkSecondary animate-pulse"></div>
+          <div className="relative w-12 h-12 origin-center transform bg-customLight dark:bg-customLight animate-pulse"></div>
           <div className="flex flex-col gap-1">
-            <p className="animate-pulse w-40 h-6 md:h-[28px] bg-gray-300 dark:bg-darkSecondary"></p>
-            <p className="h-4 bg-gray-300 animate-pulse w-28 md:h-6 dark:bg-darkSecondary delay-125"></p>
+            <p className="animate-pulse w-40 h-6 md:h-[28px] bg-customLight dark:bg-customLight"></p>
+            <p className="h-4 bg-customLight animate-pulse w-28 md:h-6 dark:bg-customLight delay-125"></p>
           </div>
         </div>
       ))}
@@ -251,7 +251,7 @@ function LoadingArtists() {
       {Array.from(Array(5).keys()).map((item) => (
         <div
           key={item}
-          className="h-[80.8px] first:h-[81.6px] first:md:h-[129.6px] md:h-[128.8px]  bg-gray-100  dark:bg-darkPrimary  border-l first:border-t border-r border-b border-gray-300 dark:border-neutral-600 p-4 font-barlow flex items-center gap-5 overflow-hidden"
+          className="h-[80.8px] first:h-[81.6px] first:md:h-[129.6px] md:h-[128.8px]  bg-customLight  dark:bg-customLight  border-l first:border-t border-r border-b border-neutral-600 dark:border-neutral-600 p-4 font-barlow flex items-center gap-5 overflow-hidden"
         >
           <>
             <div className="hidden tracking-wider origin-center transform font-inter xs:inline-flex">
@@ -259,16 +259,16 @@ function LoadingArtists() {
             </div>
             <div
               aria-label="image"
-              className="relative w-12 h-12 bg-gray-300 rounded-full animate-pulse dark:bg-darkSecondary md:w-24 md:h-24"
+              className="relative w-12 h-12 bg-customLight rounded-full animate-pulse dark:bg-customLight md:w-24 md:h-24"
             ></div>
             <div className="flex flex-col gap-1">
               <h2
                 aria-label="artist-name"
-                className="animate-pulse h-6 md:h-[28px] w-40 bg-gray-300 dark:bg-darkSecondary"
+                className="animate-pulse h-6 md:h-[28px] w-40 bg-customLight dark:bg-customLight"
               ></h2>
               <p
                 aria-label="followers"
-                className="w-20 h-4 bg-gray-300 animate-pulse md:h-6 dark:bg-darkSecondary"
+                className="w-20 h-4 bg-customLight animate-pulse md:h-6 dark:bg-customLight"
               ></p>
             </div>
           </>

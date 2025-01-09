@@ -21,7 +21,7 @@ export default function Track({
       href={url}
       rel="noreferrer"
       target="_blank"
-      className=" hover:bg-white hover:dark:bg-customLight border-l first:border-t border-r border-b  border-gray-300 dark:border-neutral-600 p-4 font-barlow flex items-center gap-5 overflow-hidden relative xs:pl-16 md:!pl-20 "
+      className=" hover:bg-customLight hover:dark:bg-customLight border-l first:border-t border-r border-b  border-neutral-600 dark:border-neutral-600 p-4 font-barlow flex items-center gap-5 overflow-hidden relative xs:pl-16 md:!pl-20 "
     >
       <>
         <div className="absolute hidden text-xl tracking-wider text-gray-500 origin-center transform left-4 md:left-6 font-inter xs:inline-flex">
@@ -42,7 +42,7 @@ export default function Track({
           )}
         </div>
         <div>
-          <p className="text-base font-semibold text-gray-900 origin-left transform md:text-xl dark:text-white font-barlow">
+          <p className="text-base font-semibold text-white origin-left transform md:text-xl dark:text-white font-barlow">
             {title ?? <div className="w-full h-4 bg-white animate-pulse"></div>}
           </p>
           <p className="text-xs text-gray-500 origin-left transform sm:text-sm md:text-base line-clamp-1">

@@ -63,7 +63,7 @@ const Experiences = ({ parsedLinkedIn } : {parsedLinkedIn: Experience[]}) => {
                         {experience.job_titles.map((job: Job) => (
                         <div key={job.title} className="relative w-full group">
                             {experience.job_titles.length > 1 && (
-                            <span className="-left-[29px] h-full absolute w-0.5 bg-black dark:bg-gray-500 top-5 peer-last:opacity-0 group-last:opacity-0"></span>
+                            <span className="-left-[29px] h-full absolute w-0.5 bg-gray-500 dark:bg-gray-500 top-5 peer-last:opacity-0 group-last:opacity-0"></span>
                             )}
                             <div
                             className={
@@ -75,13 +75,13 @@ const Experiences = ({ parsedLinkedIn } : {parsedLinkedIn: Experience[]}) => {
                                 {job.title}
 
                                 {experience.job_titles.length > 1 && (
-                                    <span className="absolute -left-[31.5px] h-2 w-2 top-1/2 -translate-y-1/2 rounded-full bg-white dark:bg-gray-500 ring-[3px] ring-black dark:ring-white"></span>
+                                    <span className="absolute -left-[31.5px] h-2 w-2 top-1/2 -translate-y-1/2 rounded-full bg-gray-500 dark:bg-gray-500 ring-[3px] ring-white dark:ring-white"></span>
                                 )}
                                 </h3>
                                 {experience.job_titles.length === 1 && (
                                 <p className="text-base">{experience.company}</p>
                                 )}
-                                <p className="text-sm text-gray-500 dark:text-gray-400">
+                                <p className="text-sm text-gray-400 dark:text-gray-400">
                                 {job.location}
                                 </p>
                             </div>
@@ -107,7 +107,7 @@ const Experiences = ({ parsedLinkedIn } : {parsedLinkedIn: Experience[]}) => {
                             </div>
 
                             {job.description && (
-                            <p className="whitespace-pre-wrap mt-2 text-sm text-black/80 dark:text-white/50">
+                            <p className="whitespace-pre-wrap mt-2 text-sm text-white/50 dark:text-white/50">
                                 {job.description}
                             </p>
                             )}

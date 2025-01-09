@@ -36,13 +36,13 @@ import {
         <div className="font-barlow mb-10 max-w-full">
           <AnimatedHeading
             variants={opacityVariant}
-            className="text-3xl font-bold capitalize sm:text-4xl text-neutral-900 dark:text-neutral-200"
+            className="text-3xl font-bold capitalize sm:text-4xl text-neutral-200 dark:text-neutral-200"
           >
             {t('githubGraph')}
           </AnimatedHeading>
           <AnimatedText
             variants={opacityVariant}
-            className="my-4 text-gray-700 dark:text-gray-300"
+            className="my-4 text-gray-300 dark:text-gray-300"
           >
             {t('githubGraphDesc')}
           </AnimatedText>
@@ -95,13 +95,13 @@ import {
         <div className="font-barlow mb-10 max-w-full">
           <AnimatedHeading
             variants={opacityVariant}
-            className="text-3xl font-bold capitalize sm:text-4xl text-neutral-900 dark:text-neutral-200"
+            className="text-3xl font-bold capitalize sm:text-4xl text-neutral-200 dark:text-neutral-200"
           >
             {t('productivity')}
           </AnimatedHeading>
           <AnimatedText
             variants={opacityVariant}
-            className="my-4 text-gray-700 dark:text-gray-300"
+            className="my-4 text-gray-300 dark:text-gray-300"
           >
             {t('productivityDesc')}
           </AnimatedText>
@@ -140,7 +140,7 @@ import {
 
     if (active && payload && payload.length) {
       return (
-        <div className="p-5 rounded-md bg-customLight text-white dark:text-gray-200 text-sm max-w-[250px] w-fit shadow-lg">
+        <div className="p-5 rounded-md bg-customLight text-gray-200 dark:text-gray-200 text-sm max-w-[250px] w-fit shadow-lg">
           <p className="label">
             <span className="font-medium">{t('date')} :</span>{" "}
             {getFormattedDate(new Date(payload[0].payload.date))}

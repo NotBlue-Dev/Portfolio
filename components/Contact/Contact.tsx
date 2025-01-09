@@ -9,9 +9,9 @@ export default function Contact() {
   const {t} = useTranslation('common');
 
   return (
-    <div id="contact" className="dark:bg-darkPrimary !relative">
+    <div id="contact" className="!relative">
       {/* Wrapper Container */}
-      <section className="flex flex-col w-full px-5 mx-auto lg:flex-row dark:bg-darkPrimary dark:text-white lg:pb-10">
+      <section className="flex flex-col w-full px-5 mx-auto lg:flex-row text-white dark:text-white lg:pb-10">
         {/* Left Contact form section */}
         <div className="w-full mx-auto mt-10">
           <AnimatedHeading

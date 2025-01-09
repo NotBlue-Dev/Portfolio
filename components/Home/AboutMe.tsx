@@ -15,7 +15,7 @@ const AboutMe = () => {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                className="my-2 text-xl font-bold text-left md:text-3xl"
+                className="my-2 text-xl font-bold text-left md:text-3xl text-gray-300"
             >
                 {t('aboutMe')}
             </motion.h1>

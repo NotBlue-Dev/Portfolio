@@ -41,7 +41,7 @@ export default function SkillSection() {
               onMouseLeave={(e: React.MouseEvent<HTMLDivElement>) =>
                 WindowsAnimation.removeHoverAnimation(e)
               }
-              className="flex items-center justify-center gap-4 p-4 origin-center transform rounded-md sm:justify-start bg-gray-50 hover:bg-white dark:bg-customLight hover:dark:bg-customLight dark:border-neutral-700 md:origin-top group"
+              className="flex items-center justify-center gap-4 p-4 origin-center transform rounded-md sm:justify-start bg-customLight hover:bg-customLight dark:bg-customLight hover:dark:bg-customLight dark:border-neutral-700 md:origin-top group"
             >
               <div className="relative transition pointer-events-none select-none group-hover:scale-110 sm:group-hover:scale-100">
                 <Icon className="w-8 h-8" />

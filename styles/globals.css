@@ -157,5 +157,5 @@ pre::-webkit-scrollbar {
 /* Nprogress bar Custom Styling (force) : ENDS */
 
 .card {
-  @apply bg-white dark:bg-customLight p-5 sm:p-10 flex flex-col sm:flex-row gap-8 items-center max-w-2xl shadow-md rounded-lg mt-[30%] sm:mt-8 transition-all;
+  @apply bg-customLight dark:bg-customLight p-5 sm:p-10 flex flex-col sm:flex-row gap-8 items-center max-w-2xl shadow-md rounded-lg mt-[30%] sm:mt-8 transition-all;
 }

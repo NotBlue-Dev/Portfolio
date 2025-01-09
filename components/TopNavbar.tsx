@@ -66,7 +66,7 @@ export default function TopNavbar() {
 
   return (
     <div
-    className="fixed w-full dark:text-white top-0 flex items-center justify-between px-4 py-[10px] sm:px-6 z-50 print:hidden"
+    className="fixed w-full text-white dark:text-white top-0 flex items-center justify-between px-4 py-[10px] sm:px-6 z-50 print:hidden"
     ref={navRef}
     >
       {/* Mobile Navigation Hamburger and MobileMenu */}
@@ -114,7 +114,7 @@ function NavItem({ href, text }: { href: string; text: string }) {
   const { animationComplete, setAnimationComplete } = useAnimationContext();
   const link = (href === "/home" ? "/" : href);
   const isActive = animationComplete && router.asPath === "/" && href === "/about" || router.asPath === link && !animationComplete;
-  const className = `${isActive ? "font-bold text-gray-800 dark:text-gray-100" : "text-gray-600 dark:text-gray-300"} sm:inline-block transition-all text-[17px] px-2 md:px-3 py-[3px] hover:bg-black/10 dark:hover:bg-neutral-700/50 rounded-md`
+  const className = `${isActive ? "font-bold text-gray-100 tdark:ext-gray-100" : "text-gray-300 dark:text-gray-300"} sm:inline-block transition-all text-[17px] px-2 md:px-3 py-[3px] hover:bg-neutral-700/50 dark:hover:bg-neutral-700/50 rounded-md`
 
   return (
     <Link
@@ -220,7 +220,7 @@ const MobileMenu = ({
 
   return (
     <motion.div
-      className="absolute top-0 left-0 z-10 w-screen h-screen font-normal dark:bg-customBlue sm:hidden"
+      className="absolute top-0 left-0 z-10 w-screen h-screen font-normal bg-customBlue dark:bg-customBlue sm:hidden"
       variants={hamFastFadeContainer}
       initial="hidden"
       animate="visible"
@@ -254,7 +254,7 @@ const MobileMenu = ({
               href={navlink === "/home" || navlink === "/about" ? "/" : navlink}
               key={`mobileNav-${index}`}
               onClick={handleClick}
-              className="flex w-auto py-4 text-base font-semibold text-gray-900 capitalize border-b border-gray-300 cursor-pointer dark:border-gray-700 dark:text-gray-100"
+              className="flex w-auto py-4 text-base font-semibold text-gray-100 capitalize border-b border-gray-700 cursor-pointer dark:border-gray-700 dark:text-gray-100"
             >
               <motion.p variants={mobileNavItemSideways}>
                 {t(link)}

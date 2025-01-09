@@ -24,7 +24,7 @@ export default function Artist({
       rel="noreferrer"
       target="_blank"
       href={url}
-      className="flex items-center gap-5 p-4 overflow-hidden  border-b border-l border-r border-gray-300 hover:bg-white  hover:dark:bg-customLight first:border-t dark:border-neutral-600 font-barlow"
+      className="flex items-center gap-5 p-4 overflow-hidden  border-b border-l border-r border-neutral-600 hover:bg-customLight  hover:dark:bg-customLight first:border-t dark:border-neutral-600 font-barlow"
     >
       <>
         <div className="hidden text-xl tracking-wider text-gray-500 origin-center transform font-inter xs:inline-flex">
@@ -44,7 +44,7 @@ export default function Artist({
           ></Image>
         </div>
         <div>
-          <h2 className="text-base font-semibold text-gray-900 origin-left transform sm:text-lg md:text-xl xl:text-2xl dark:text-white md:font-bold font-barlow">
+          <h2 className="text-base font-semibold text-white origin-left transform sm:text-lg md:text-xl xl:text-2xl dark:text-white md:font-bold font-barlow">
             {name}
           </h2>
           <p className="text-xs text-gray-500 origin-left transform sm:text-sm md:text-base md:font-medium line-clamp-1">

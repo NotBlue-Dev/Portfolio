@@ -12,10 +12,10 @@ export default function Project({ project }: { project: ProjectType }) {
 
       <div className="flex flex-col justify-start gap-3 w-full">
         <div className="flex flex-row justify-between">
-          <h1 className="font-bold text-neutral-900 dark:text-neutral-200">
+          <h1 className="font-bold text-neutral-200 dark:text-neutral-200">
             {project.name}
           </h1>
-          <h2 className="font-semibold text-neutral-900 dark:text-neutral-200">
+          <h2 className="font-semibold text-neutral-200 dark:text-neutral-200">
             {getFormattedDate(new Date(project.date))}
           </h2>
         </div>
@@ -28,7 +28,7 @@ export default function Project({ project }: { project: ProjectType }) {
             return (
               <span
                 key={`${tool}-${index}`}
-                className="px-2 py-1 text-xs text-gray-700 bg-gray-100 rounded dark:bg-custom"
+                className="px-2 py-1 text-xs text-gray-700 bg-gray-100 rounded dark:bg-gray-100"
               >
                 {tool}
               </span>
@@ -41,7 +41,7 @@ export default function Project({ project }: { project: ProjectType }) {
             return (
               <span
                 key={`${tool}-${index}`}
-                className="px-2 py-1 text-xs text-gray-300 bg-customBlue rounded dark:bg-custom"
+                className="px-2 py-1 text-xs text-gray-300 bg-customBlue rounded dark:bg-customBlue"
               >
                 {tool}
               </span>
@@ -56,7 +56,7 @@ export default function Project({ project }: { project: ProjectType }) {
               title="Source Code on GitHub"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-500 hover:text-black dark:hover:text-white"
+              className="text-gray-500 hover:text-white dark:hover:text-white"
             >
               <BsGithub className="w-6 h-6 transition-all hover:scale-110 active:scale-90" />
             </Link>
@@ -68,7 +68,7 @@ export default function Project({ project }: { project: ProjectType }) {
               title="Live Preview"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-500 hover:text-black dark:hover:text-white"
+              className="text-gray-500 hover:text-white dark:hover:text-white"
             >
               <MdOutlineLink className="w-6 h-6 transition-all hover:scale-110 active:scale-90" />
             </Link>
