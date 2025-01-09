@@ -19,10 +19,10 @@ export default function Home({ linkedin } : { linkedin : {value: {experiences: E
   return (
       <>
         <Metadata
-          title={pageMeta.projects.title}
-          description={pageMeta.projects.description}
-          previewImage={pageMeta.projects.image}
-          keywords={pageMeta.projects.keywords}
+          title={pageMeta.about.title}
+          description={pageMeta.about.description}
+          previewImage={pageMeta.about.image}
+          keywords={pageMeta.about.keywords}
         />
         <section
           className={`${

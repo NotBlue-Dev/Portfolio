@@ -8,10 +8,10 @@ const Contact = () => {
     return (
       <>
         <Metadata
-          title={pageMeta.projects.title}
-          description={pageMeta.projects.description}
-          previewImage={pageMeta.projects.image}
-          keywords={pageMeta.projects.keywords}
+          title={pageMeta.contact.title}
+          description={pageMeta.contact.description}
+          previewImage={pageMeta.contact.image}
+          keywords={pageMeta.contact.keywords}
         />
         <section className='justify-center mx-auto my-11 mb-10 max-w-7xl relative p-4 mt-20'>
             <ContactComponent />
