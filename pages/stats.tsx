@@ -60,10 +60,10 @@ export default function Stats() {
   return (
     <>
       <Metadata
-        title={pageMeta.projects.title}
-        description={pageMeta.projects.description}
-        previewImage={pageMeta.projects.image}
-        keywords={pageMeta.projects.keywords}
+        title={pageMeta.stats.title}
+        description={pageMeta.stats.description}
+        previewImage={pageMeta.stats.image}
+        keywords={pageMeta.stats.keywords}
       />
       <section className="justify-center mx-auto my-11 mb-10 max-w-7xl relative p-4">
         <div
